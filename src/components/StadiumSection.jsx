@@ -24,7 +24,7 @@ const pillars = [
 ];
 
 const stats = [
-  { num: '44',   label: 'Players',        sub: 'Per installation' },
+  { num: '20',   label: 'Players',        sub: 'Per installation' },
   { num: '1',    label: 'License',        sub: 'Covers all seats' },
   { num: '80',   label: 'Rounds / Hour',  sub: 'At full stadium capacity' },
 ];
