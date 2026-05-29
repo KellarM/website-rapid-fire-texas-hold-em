@@ -105,8 +105,9 @@ export default function CascadeSection() {
               />
             </div>
             {/* Stat row */}
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-4 gap-3">
               {[
+                { num: '10', label: 'Card Hands', sub: 'Initial Bet' },
                 { num: '7', label: 'Hand Ranks', sub: 'Payout Tiers' },
                 { num: '6', label: 'Color Board', sub: 'Positions' },
                 { num: '2', label: 'River', sub: 'Side Bets' },
