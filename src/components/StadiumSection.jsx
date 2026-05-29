@@ -8,7 +8,7 @@ const pillars = [
   },
   {
     icon: '👥',
-    title: 'Up to 44 Simultaneous Players',
+    title: 'Up to 20 Simultaneous Players',
     desc: 'A single Rapid Fire instance serves a full stadium row. Every player terminal is synchronized to the same live game round in real time.',
   },
   {
