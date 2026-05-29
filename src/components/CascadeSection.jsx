@@ -97,11 +97,11 @@ export default function CascadeSection() {
 
           {/* Artwork */}
           <div className="flex flex-col gap-5">
-            <div className="card-dark rounded-sm overflow-hidden flex-1">
+            <div className="card-dark rounded-sm overflow-hidden flex-1" style={{ minHeight: '480px' }}>
               <img
-                src="https://media.base44.com/images/public/6a18db090bc2bcd630da3665/ac1c1df10_image.png"
+                src="https://media.base44.com/images/public/6a18db090bc2bcd630da3665/0a7e4cd57_image.png"
                 alt="The Cascade — Revenue Redefined"
-                className="w-full h-full object-contain"
+                style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
               />
             </div>
             {/* Stat row */}
