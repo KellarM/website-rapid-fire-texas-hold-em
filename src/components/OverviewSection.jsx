@@ -76,11 +76,12 @@ export default function OverviewSection() {
             <h3 className="text-white text-2xl font-playfair font-bold mt-1">Rapid Fire Texas Hold'em Terminal Interface</h3>
             <p className="text-white/50 text-sm mt-1">10-seat multi-player layout with live odds, community cards, and four bet zones — all in one unified display.</p>
           </div>
+
           <div className="relative">
             <img
-              src="https://media.base44.com/images/public/6a18db090bc2bcd630da3665/bd15b38d5_image.png"
+              src="https://media.base44.com/images/public/6a18db090bc2bcd630da3665/20021bfca_image.png"
               alt="Game Interface"
-              className="w-full object-cover"
+              style={{ width: '100%', height: 'auto', display: 'block' }}
             />
           </div>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-0 border-t border-gold/10">

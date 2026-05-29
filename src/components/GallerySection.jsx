@@ -16,7 +16,7 @@ const galleryItems = [
     span: 'col-span-1',
   },
   {
-    url: 'https://media.base44.com/images/public/6a18db090bc2bcd630da3665/ac1c1df10_image.png',
+    url: 'https://media.base44.com/images/public/6a18db090bc2bcd630da3665/103cec161_TheSnowball.png',
     label: 'Proprietary System',
     title: 'The Cascade — Revenue Redefined',
     desc: 'Engineered commitment: the Cascade Crescendo betting flow',
