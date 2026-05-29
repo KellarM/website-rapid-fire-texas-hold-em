@@ -2,10 +2,10 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function MarketSection() {
   const ref = useScrollReveal();
-
   return (
     <section id="market" style={{ backgroundColor: '#0A0A0A' }} className="py-24">
       <div className="max-w-7xl mx-auto px-6">
+
         <div ref={ref} className="reveal text-center mb-12">
           <div className="flex items-center justify-center gap-4 mb-4">
             <div className="h-px w-12 bg-gold/60" />
@@ -21,30 +21,34 @@ export default function MarketSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-          {/* ETG Market */}
+
+          {/* EGM / ETG Market — updated to 2025/2026 data */}
           <div className="card-dark rounded-sm p-7 border-t-2 border-t-gold">
-            <div className="section-label mb-4">ETG Market</div>
+            <div className="section-label mb-4">EGM / ETG Market</div>
             <div className="flex items-end gap-6 mb-6">
               <div>
-                <div className="text-white/40 text-xs mb-1">2024 Valuation</div>
-                <div className="font-bebas text-4xl text-white">$1.97B</div>
+                <div className="text-white/40 text-xs mb-1">2025 Valuation</div>
+                <div className="font-bebas text-4xl text-white">$7.4B</div>
               </div>
               <div className="text-gold">→</div>
               <div>
-                <div className="text-white/40 text-xs mb-1">Projected 2032</div>
-                <div className="font-bebas text-4xl text-gold">$3.42B</div>
+                <div className="text-white/40 text-xs mb-1">Projected 2034</div>
+                <div className="font-bebas text-4xl text-gold">$14.2B</div>
               </div>
             </div>
             <div className="flex items-center gap-3 p-3 bg-gold/10 border border-gold/20 rounded-sm">
-              <div className="font-bebas text-3xl text-gold">9.1%</div>
+              <div className="font-bebas text-3xl text-gold">7.5%</div>
               <div>
                 <div className="text-white text-sm font-semibold">Compound Annual Growth Rate</div>
-                <div className="text-white/40 text-xs">2025–2030 · Source: Verified Market Research / Feb 2024</div>
+                <div className="text-white/40 text-xs">2026–2034 · Source: Dataintelo / Mar 2026</div>
               </div>
+            </div>
+            <div className="mt-3 text-white/30 text-xs leading-relaxed">
+              Fully Automated segment fastest-growing at 8.9% CAGR. 14,200+ new EGM units installed globally in 2025.
             </div>
           </div>
 
-          {/* iGaming Market */}
+          {/* iGaming Market — Grand View Research data still current */}
           <div className="card-dark rounded-sm p-7 border-t-2 border-t-gold">
             <div className="section-label mb-4">iGaming Market</div>
             <div className="flex items-end gap-6 mb-6">
@@ -62,10 +66,14 @@ export default function MarketSection() {
               <div className="font-bebas text-3xl text-gold">11.9%</div>
               <div>
                 <div className="text-white text-sm font-semibold">Compound Annual Growth Rate</div>
-                <div className="text-white/40 text-xs">2025–2030 · Source: Grand View Research / Dec 2023</div>
+                <div className="text-white/40 text-xs">2025–2030 · Source: Grand View Research / 2025</div>
               </div>
             </div>
+            <div className="mt-3 text-white/30 text-xs leading-relaxed">
+              Global online gambling market valued at $99.7B in 2025. Projected $179.7B by 2034. — IMARC Group, 2026.
+            </div>
           </div>
+
         </div>
 
         {/* iGaming Ready */}
@@ -85,7 +93,7 @@ export default function MarketSection() {
             </div>
             <div className="grid grid-cols-2 gap-3">
               {[
-                { icon: '<>', title: 'HTML5 Architecture', desc: 'Built in React/Vue — runs in any browser, any device.' },
+                { icon: '<>', title: 'HTML5 Architecture', desc: 'Built in React/Vite — runs in any browser, any device.' },
                 { icon: '🔌', title: 'RGS Compatible', desc: 'Plug into any Remote Game Server. No custom integration needed.' },
                 { icon: '🛡️', title: 'Same Math Model', desc: 'Identical certified engine — same RTP, same compliance package.' },
                 { icon: '♾️', title: 'Zero Redevelopment', desc: 'One license covers both land-based and online deployment.' },
@@ -99,6 +107,7 @@ export default function MarketSection() {
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );
