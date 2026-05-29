@@ -4,12 +4,12 @@ const features = [
   {
     icon: '👁️',
     title: 'Watch & Play Mechanics',
-    desc: 'Immediately identifiable to any Texas Hold\'em player. Classic best 5-card hand wins in a player-vs-house format. A new player grasps winning conditions after a single observed round.',
+    desc: "Immediately identifiable to any Texas Hold'em player. Classic best 5-card hand wins in a player-vs-house format. A new player grasps winning conditions after a single observed round.",
   },
   {
     icon: '📊',
     title: 'Mathematical Rigor',
-    desc: 'Over 20 million calibration cycles and Monte Carlo test simulations ensure the highest level of mathematical integrity and repeatable performance required for regulated environments.',
+    desc: 'Every one of 78 bet positions is certified to 2,000,000 confirmed wins — requiring up to 44 million rounds per position for rare hand ranks. Monte Carlo validation ensures repeatable, auditable performance.',
   },
   {
     icon: '🔺',
@@ -24,21 +24,21 @@ const features = [
   {
     icon: '⚙️',
     title: 'Adjustable Math Engine',
-    desc: 'Flexible RTP range of 95% to 98%. All odds and payout structures are adjustable to meet specific house requirements. Hands-per-hour algorithm tunable to 80–90 rounds/hour.',
+    desc: 'Flexible RTP range of 95% to 98%. All odds and payout structures are adjustable to meet specific house requirements. Hands-per-hour algorithm tunable to up to 80 rounds/hour.',
   },
   {
-    icon: '👥',
-    title: 'Single or Multi-Player Shared Experience',
-    desc: 'Stand alone / bundled cabinet or Fully functional as a shared terminal experience, allowing multiple players to participate simultaneously — creating the community atmosphere essential for successful ETG installations.',
+    icon: '🏟️',
+    title: 'EGM + Stadium Gaming Ready',
+    desc: 'Operates as a standalone EGM cabinet or as a full Stadium Gaming configuration — large shared display with multiple synchronized player terminals creating the community atmosphere of a live poker room at slot-machine speed.',
   },
 ];
 
 export default function OverviewSection() {
   const ref = useScrollReveal();
-
   return (
     <section id="overview" style={{ backgroundColor: '#0A0A0A' }} className="py-24">
       <div className="max-w-7xl mx-auto px-6">
+
         {/* Header */}
         <div ref={ref} className="reveal text-center mb-16">
           <div className="flex items-center justify-center gap-4 mb-4">
@@ -47,10 +47,10 @@ export default function OverviewSection() {
             <div className="h-px w-12 bg-gold/60" />
           </div>
           <h2 className="font-playfair text-4xl md:text-5xl text-white font-bold mb-4">
-            Engineered for the <span className="text-gold-gradient">ETG Space</span>
+            Engineered for the <span className="text-gold-gradient">Modern Casino Floor</span>
           </h2>
           <p className="text-white/60 text-lg max-w-2xl mx-auto font-light">
-            Poker intelligence. Slot velocity. Casino simplicity.
+            Poker intelligence. Slot velocity. Casino simplicity. EGM and Stadium Gaming ready.
           </p>
         </div>
 
@@ -69,14 +69,13 @@ export default function OverviewSection() {
           ))}
         </div>
 
-        {/* Game Interface Annotated */}
+        {/* Game Interface */}
         <div className="card-dark rounded-sm overflow-hidden">
           <div className="p-6 border-b border-gold/10">
             <span className="section-label">Game Interface</span>
             <h3 className="text-white text-2xl font-playfair font-bold mt-1">Rapid Fire Texas Hold'em Terminal Interface</h3>
-            <p className="text-white/50 text-sm mt-1">10-seat multi-player layout with live odds, community cards, and four bet zones — all in one unified display.</p>
+            <p className="text-white/50 text-sm mt-1">10-seat layout with live odds, community cards, and four bet zones — unified on a single display. Scalable to full stadium configuration.</p>
           </div>
-
           <div style={{ backgroundColor: '#0A0A0A', display: 'flex', justifyContent: 'center', padding: '1.5rem' }}>
             <img
               src="https://media.base44.com/images/public/6a18db090bc2bcd630da3665/787432b72_image.png"
@@ -85,7 +84,7 @@ export default function OverviewSection() {
             />
           </div>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-0 border-t border-gold/10">
-            {['No Dealer Required', 'No Skill Required', 'Fully Certified Engine', 'iGaming-Ready HTML5', 'RGS Compatible'].map((item, i) => (
+            {['No Dealer Required', 'No Skill Required', 'EGM & Stadium Ready', 'iGaming-Ready HTML5', 'RGS Compatible'].map((item, i) => (
               <div key={item} className={`px-4 py-3 text-center ${i < 4 ? 'border-r border-gold/10' : ''}`}>
                 <div className="text-gold text-lg mb-0.5">✓</div>
                 <div className="text-white/60 text-xs leading-tight">{item}</div>
@@ -93,6 +92,7 @@ export default function OverviewSection() {
             ))}
           </div>
         </div>
+
       </div>
     </section>
   );
