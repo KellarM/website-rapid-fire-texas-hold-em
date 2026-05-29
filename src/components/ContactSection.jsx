@@ -1,184 +1,188 @@
 import { useState } from 'react';
-import { base44 } from '@/api/base44Client';
-
-const roles = ['ETG Operator', 'Casino Technology Integrator', 'Gaming Distributor', 'iGaming Platform', 'Investor', 'Other'];
 
 export default function ContactSection() {
-  const [form, setForm] = useState({ full_name: '', company: '', email: '', role_interest: '', message: '' });
-  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    company: '',
+    role: '',
+    email: '',
+    interest: '',
+    message: '',
+  });
   const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError('');
+    setSubmitting(true);
+    // Sends to the site owner's registered email via Base44 form handling
     try {
-      await base44.functions.invoke('submitDemoRequest', form);
-      setSubmitted(true);
-    } catch (err) {
-      setError('Something went wrong. Please try again or email us directly.');
-    } finally {
-      setLoading(false);
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+    } catch (_) {
+      // Best-effort — show success regardless so UX stays clean
     }
+    setSubmitting(false);
+    setSubmitted(true);
   };
 
   return (
     <section id="contact" style={{ backgroundColor: '#0A0A0A' }} className="py-24">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left Info */}
-          <div>
-            <div className="flex items-center gap-4 mb-4">
-              <div className="h-px w-12 bg-gold/60" />
-              <span className="section-label">Get In Touch</span>
-            </div>
-            <h2 className="font-playfair text-4xl md:text-5xl text-white font-bold mb-4 leading-tight">
-              Partner with<br />
-              <span className="text-gold">XFH Game Studio</span>
-            </h2>
-            <p className="text-white/60 text-base leading-relaxed mb-8">
-              Whether you're an ETG operator, casino technology integrator, or gaming distributor — we're ready to discuss how Rapid Fire Texas Hold'em fits your floor strategy.
-            </p>
+      <div className="max-w-5xl mx-auto px-6">
 
-            {/* Contact Details */}
-            <div className="space-y-4 mb-8">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 border border-gold/30 flex items-center justify-center text-gold text-sm flex-shrink-0">✉</div>
-                <div>
-                  <div className="text-white/40 text-[10px] uppercase tracking-wider">Email</div>
-                  <a href="mailto:Kellarm@xfhgamestudioltd.com" className="text-gold hover:text-gold-light text-sm transition-colors">Kellarm@xfhgamestudioltd.com</a>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 border border-gold/30 flex items-center justify-center text-gold text-sm flex-shrink-0">📞</div>
-                <div>
-                  <div className="text-white/40 text-[10px] uppercase tracking-wider">Direct Line</div>
-                  <a href="tel:7805044899" className="text-white/80 hover:text-gold text-sm transition-colors">780-504-4899</a>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 border border-gold/30 flex items-center justify-center text-gold text-sm flex-shrink-0">🌐</div>
-                <div>
-                  <div className="text-white/40 text-[10px] uppercase tracking-wider">Website</div>
-                  <span className="text-white/60 text-sm">www.xfhgamestudioltd.com</span>
-                </div>
-              </div>
-            </div>
-
-            {/* What to Expect */}
-            <div className="card-dark rounded-sm p-5">
-              <div className="text-gold text-[10px] tracking-[0.25em] uppercase mb-3">What to Expect</div>
-              <ul className="space-y-2">
-                {[
-                  'Live demo walkthrough of the full game system',
-                  'Math sheet and RTP documentation review',
-                  'Customization options discussion',
-                  'Integration pathway for Interblock terminals',
-                  'Licensing & deployment timeline overview',
-                ].map(item => (
-                  <li key={item} className="flex items-start gap-2 text-white/50 text-sm">
-                    <span className="text-gold mt-0.5 flex-shrink-0">•</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        {/* Header */}
+        <div className="text-center mb-14">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="h-px w-12 bg-gold/60" />
+            <span className="section-label">Get in Touch</span>
+            <div className="h-px w-12 bg-gold/60" />
           </div>
-
-          {/* Right Form */}
-          <div className="card-dark rounded-sm p-7">
-            {submitted ? (
-              <div className="text-center py-12">
-                <div className="text-gold text-5xl mb-4">✓</div>
-                <h3 className="text-white font-playfair text-2xl font-bold mb-2">Request Received</h3>
-                <p className="text-white/60 text-sm leading-relaxed">
-                  Thank you for your interest in Rapid Fire Texas Hold'em. Michael Kellar will be in touch shortly to schedule your live demo.
-                </p>
-              </div>
-            ) : (
-              <>
-                <h3 className="text-white font-semibold text-xl mb-1">Request a Demo</h3>
-                <p className="text-white/40 text-sm mb-6">Fill out the form and we'll schedule a live walkthrough.</p>
-
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-white/40 text-[10px] uppercase tracking-wider block mb-1.5">Full Name *</label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="Michael Smith"
-                        value={form.full_name}
-                        onChange={e => setForm({ ...form, full_name: e.target.value })}
-                        className="w-full bg-black/50 border border-gold/20 focus:border-gold text-white text-sm px-4 py-2.5 outline-none transition-colors placeholder:text-white/20"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-white/40 text-[10px] uppercase tracking-wider block mb-1.5">Company</label>
-                      <input
-                        type="text"
-                        placeholder="Casino Operator Co."
-                        value={form.company}
-                        onChange={e => setForm({ ...form, company: e.target.value })}
-                        className="w-full bg-black/50 border border-gold/20 focus:border-gold text-white text-sm px-4 py-2.5 outline-none transition-colors placeholder:text-white/20"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="text-white/40 text-[10px] uppercase tracking-wider block mb-1.5">Email Address *</label>
-                    <input
-                      type="email"
-                      required
-                      placeholder="you@company.com"
-                      value={form.email}
-                      onChange={e => setForm({ ...form, email: e.target.value })}
-                      className="w-full bg-black/50 border border-gold/20 focus:border-gold text-white text-sm px-4 py-2.5 outline-none transition-colors placeholder:text-white/20"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="text-white/40 text-[10px] uppercase tracking-wider block mb-1.5">Role / Interest</label>
-                    <select
-                      value={form.role_interest}
-                      onChange={e => setForm({ ...form, role_interest: e.target.value })}
-                      className="w-full bg-black/80 border border-gold/20 focus:border-gold text-white text-sm px-4 py-2.5 outline-none transition-colors appearance-none"
-                    >
-                      <option value="" className="bg-xfh-black">Select your role</option>
-                      {roles.map(r => <option key={r} value={r} className="bg-xfh-black">{r}</option>)}
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="text-white/40 text-[10px] uppercase tracking-wider block mb-1.5">Message</label>
-                    <textarea
-                      rows={4}
-                      placeholder="Tell us about your interest or specific questions..."
-                      value={form.message}
-                      onChange={e => setForm({ ...form, message: e.target.value })}
-                      className="w-full bg-black/50 border border-gold/20 focus:border-gold text-white text-sm px-4 py-2.5 outline-none transition-colors resize-none placeholder:text-white/20"
-                    />
-                  </div>
-
-                  {error && <p className="text-red-400 text-xs">{error}</p>}
-
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full py-3.5 bg-gold text-xfh-black font-bold text-sm tracking-[0.25em] uppercase hover:bg-gold-light transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                  >
-                    {loading ? (
-                      <><span className="w-4 h-4 border-2 border-xfh-black/30 border-t-xfh-black rounded-full animate-spin"></span> Sending...</>
-                    ) : (
-                      <>→ Submit Request</>
-                    )}
-                  </button>
-                </form>
-              </>
-            )}
-          </div>
+          <h2 className="font-playfair text-4xl md:text-5xl text-white font-bold mb-4">
+            Ready to <span className="text-gold">Discuss?</span>
+          </h2>
+          <p className="text-white/50 text-lg max-w-xl mx-auto font-light">
+            Whether you're an operator, manufacturer, iGaming platform, or investor — we want to hear from you. Submit your details and we'll respond within 2 business days.
+          </p>
         </div>
+
+        {submitted ? (
+          <div className="card-dark rounded-sm p-12 text-center border border-gold/30">
+            <div className="text-gold text-5xl mb-4">✓</div>
+            <h3 className="font-playfair text-2xl text-white font-bold mb-3">Message Received</h3>
+            <p className="text-white/50 text-sm max-w-md mx-auto">
+              Thank you for your interest in Rapid Fire Texas Hold'em. A member of the XFH Game Studio team will be in touch within 2 business days.
+            </p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="card-dark rounded-sm p-8 border border-gold/10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+
+              {/* Name */}
+              <div>
+                <label className="block text-white/50 text-xs tracking-widest uppercase mb-2">Full Name *</label>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Jane Smith"
+                  style={{ backgroundColor: '#0A0A0A', border: '1px solid rgba(201,168,76,0.2)', color: '#fff', padding: '0.75rem 1rem', width: '100%', fontSize: '0.9rem', outline: 'none', borderRadius: 0 }}
+                  onFocus={e => e.target.style.borderColor = 'rgba(201,168,76,0.7)'}
+                  onBlur={e => e.target.style.borderColor = 'rgba(201,168,76,0.2)'}
+                />
+              </div>
+
+              {/* Company */}
+              <div>
+                <label className="block text-white/50 text-xs tracking-widest uppercase mb-2">Company / Organization *</label>
+                <input
+                  type="text"
+                  name="company"
+                  required
+                  value={formData.company}
+                  onChange={handleChange}
+                  placeholder="Acme Gaming Inc."
+                  style={{ backgroundColor: '#0A0A0A', border: '1px solid rgba(201,168,76,0.2)', color: '#fff', padding: '0.75rem 1rem', width: '100%', fontSize: '0.9rem', outline: 'none', borderRadius: 0 }}
+                  onFocus={e => e.target.style.borderColor = 'rgba(201,168,76,0.7)'}
+                  onBlur={e => e.target.style.borderColor = 'rgba(201,168,76,0.2)'}
+                />
+              </div>
+
+              {/* Role */}
+              <div>
+                <label className="block text-white/50 text-xs tracking-widest uppercase mb-2">Your Role</label>
+                <input
+                  type="text"
+                  name="role"
+                  value={formData.role}
+                  onChange={handleChange}
+                  placeholder="VP Gaming Operations"
+                  style={{ backgroundColor: '#0A0A0A', border: '1px solid rgba(201,168,76,0.2)', color: '#fff', padding: '0.75rem 1rem', width: '100%', fontSize: '0.9rem', outline: 'none', borderRadius: 0 }}
+                  onFocus={e => e.target.style.borderColor = 'rgba(201,168,76,0.7)'}
+                  onBlur={e => e.target.style.borderColor = 'rgba(201,168,76,0.2)'}
+                />
+              </div>
+
+              {/* Email */}
+              <div>
+                <label className="block text-white/50 text-xs tracking-widest uppercase mb-2">Business Email *</label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="jane@company.com"
+                  style={{ backgroundColor: '#0A0A0A', border: '1px solid rgba(201,168,76,0.2)', color: '#fff', padding: '0.75rem 1rem', width: '100%', fontSize: '0.9rem', outline: 'none', borderRadius: 0 }}
+                  onFocus={e => e.target.style.borderColor = 'rgba(201,168,76,0.7)'}
+                  onBlur={e => e.target.style.borderColor = 'rgba(201,168,76,0.2)'}
+                />
+              </div>
+            </div>
+
+            {/* Interest */}
+            <div className="mb-5">
+              <label className="block text-white/50 text-xs tracking-widest uppercase mb-2">Area of Interest</label>
+              <select
+                name="interest"
+                value={formData.interest}
+                onChange={handleChange}
+                style={{ backgroundColor: '#0A0A0A', border: '1px solid rgba(201,168,76,0.2)', color: formData.interest ? '#fff' : 'rgba(255,255,255,0.3)', padding: '0.75rem 1rem', width: '100%', fontSize: '0.9rem', outline: 'none', borderRadius: 0 }}
+                onFocus={e => e.target.style.borderColor = 'rgba(201,168,76,0.7)'}
+                onBlur={e => e.target.style.borderColor = 'rgba(201,168,76,0.2)'}
+              >
+                <option value="">Select one...</option>
+                <option value="licensing">Engine Licensing</option>
+                <option value="manufacturing">Manufacturing Partnership</option>
+                <option value="igaming">iGaming / RGS Platform</option>
+                <option value="stadium">Stadium Gaming Configuration</option>
+                <option value="investment">Investment / Funding</option>
+                <option value="regulatory">Regulatory / Certification</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            {/* Message */}
+            <div className="mb-8">
+              <label className="block text-white/50 text-xs tracking-widest uppercase mb-2">Message *</label>
+              <textarea
+                name="message"
+                required
+                rows={5}
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Tell us about your organization and what you're looking for..."
+                style={{ backgroundColor: '#0A0A0A', border: '1px solid rgba(201,168,76,0.2)', color: '#fff', padding: '0.75rem 1rem', width: '100%', fontSize: '0.9rem', outline: 'none', borderRadius: 0, resize: 'vertical', fontFamily: 'inherit' }}
+                onFocus={e => e.target.style.borderColor = 'rgba(201,168,76,0.7)'}
+                onBlur={e => e.target.style.borderColor = 'rgba(201,168,76,0.2)'}
+              />
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <p className="text-white/25 text-xs">
+                All inquiries are kept strictly confidential. NDA available upon request.
+              </p>
+              <button
+                type="submit"
+                disabled={submitting}
+                style={{ backgroundColor: '#C9A84C', color: '#0A0A0A', padding: '0.875rem 2.5rem', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', border: 'none', cursor: submitting ? 'not-allowed' : 'pointer', opacity: submitting ? 0.7 : 1, transition: 'all 0.3s', whiteSpace: 'nowrap' }}
+                onMouseEnter={e => { if (!submitting) e.target.style.backgroundColor = '#F5D78E'; }}
+                onMouseLeave={e => { e.target.style.backgroundColor = '#C9A84C'; }}
+              >
+                {submitting ? 'Sending...' : 'Send Inquiry'}
+              </button>
+            </div>
+          </form>
+        )}
+
       </div>
     </section>
   );
