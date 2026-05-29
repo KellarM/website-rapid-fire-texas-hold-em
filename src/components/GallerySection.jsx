@@ -49,7 +49,7 @@ export default function GallerySection() {
   const ref = useScrollReveal();
 
   return (
-    <section id="gallery" className="py-24 bg-xfh-black">
+    <section id="gallery" style={{ backgroundColor: '#0A0A0A' }} className="py-24">
       <div className="max-w-7xl mx-auto px-6">
         <div ref={ref} className="reveal text-center mb-12">
           <div className="flex items-center justify-center gap-4 mb-4">

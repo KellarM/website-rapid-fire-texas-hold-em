@@ -51,7 +51,7 @@ export default function TechnologySection() {
   const ref = useScrollReveal();
 
   return (
-    <section id="technology" className="py-24 bg-xfh-black">
+    <section id="technology" style={{ backgroundColor: '#0A0A0A' }} className="py-24">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div ref={ref} className="reveal text-center mb-16">

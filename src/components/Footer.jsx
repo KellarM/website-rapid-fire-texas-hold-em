@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="bg-xfh-black border-t border-gold/10 pt-14 pb-8">
+    <footer style={{ backgroundColor: '#0A0A0A', borderTop: '1px solid rgba(201,168,76,0.15)' }} className="pt-14 pb-8">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Brand */}

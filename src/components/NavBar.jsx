@@ -20,7 +20,7 @@ export default function NavBar() {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-xfh-black/95 backdrop-blur-md shadow-lg shadow-black/50' : 'bg-transparent'}`}>
+    <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, transition: 'all 0.5s', backgroundColor: scrolled ? 'rgba(10,10,10,0.96)' : 'transparent', backdropFilter: scrolled ? 'blur(12px)' : 'none' }}>
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 group">
@@ -71,7 +71,7 @@ export default function NavBar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="lg:hidden bg-xfh-black/98 border-t border-gold/20 px-6 py-4 space-y-4">
+        <div style={{ backgroundColor: '#0A0A0A', borderTop: '1px solid rgba(201,168,76,0.2)' }} className="lg:hidden px-6 py-4 space-y-4">
           {navLinks.map(link => (
             <a
               key={link.href}

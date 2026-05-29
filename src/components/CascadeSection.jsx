@@ -53,7 +53,7 @@ export default function CascadeSection() {
   const ref = useScrollReveal();
 
   return (
-    <section id="cascade" className="py-24 bg-xfh-navy">
+    <section id="cascade" style={{ backgroundColor: '#0D1420' }} className="py-24">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div ref={ref} className="reveal text-center mb-16">

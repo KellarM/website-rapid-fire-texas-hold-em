@@ -1,83 +1,94 @@
 export default function HeroSection() {
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-xfh-black">
-      {/* Background */}
-      <div className="absolute inset-0">
+    <section
+      id="hero"
+      style={{ backgroundColor: '#0A0A0A', minHeight: '100vh', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}
+    >
+      {/* Dark bg guarantee */}
+      <div style={{ position: 'absolute', inset: 0, backgroundColor: '#0A0A0A', zIndex: 0 }} />
+
+      {/* Background image — the game logo/speed visual */}
+      <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
         <img
           src="https://media.base44.com/images/public/user_69c5fbdb68e165c3f394466b/3be455822_SpeedofPoker.png"
-          alt="Rapid Fire"
-          className="w-full h-full object-cover opacity-25"
+          alt="Speed of Poker"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', opacity: 0.18 }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-xfh-black/60 via-transparent to-xfh-black" />
-        <div className="absolute inset-0 bg-gradient-to-r from-xfh-black/80 via-transparent to-xfh-black/80" />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #0A0A0A 0%, transparent 30%, transparent 70%, #0A0A0A 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #0A0A0A 0%, transparent 25%, transparent 75%, #0A0A0A 100%)' }} />
       </div>
 
-      {/* Gold particle line accents */}
-      <div className="absolute top-1/3 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
-      <div className="absolute bottom-1/3 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+      {/* Gold line accents */}
+      <div style={{ position: 'absolute', top: '33%', left: 0, right: 0, height: '1px', background: 'linear-gradient(to right, transparent, rgba(201,168,76,0.25), transparent)', zIndex: 2 }} />
+      <div style={{ position: 'absolute', bottom: '33%', left: 0, right: 0, height: '1px', background: 'linear-gradient(to right, transparent, rgba(201,168,76,0.15), transparent)', zIndex: 2 }} />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+      <div style={{ position: 'relative', zIndex: 3, textAlign: 'center', padding: '0 1.5rem', maxWidth: '960px', width: '100%', margin: '0 auto' }}>
+
         {/* Eyebrow */}
-        <div className="flex items-center justify-center gap-4 mb-8">
-          <div className="h-px w-12 bg-gold/60" />
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', marginBottom: '2rem' }}>
+          <div style={{ height: '1px', width: '48px', backgroundColor: 'rgba(201,168,76,0.6)' }} />
           <span className="section-label">XFH Game Studio Presents</span>
-          <div className="h-px w-12 bg-gold/60" />
+          <div style={{ height: '1px', width: '48px', backgroundColor: 'rgba(201,168,76,0.6)' }} />
         </div>
 
-        {/* Main Logo */}
-        <div className="mb-6">
+        {/* Game Logo — the official title card */}
+        <div style={{ marginBottom: '2rem' }}>
           <img
             src="https://media.base44.com/images/public/user_69c5fbdb68e165c3f394466b/1a038e55c_ChatGPTImageMay8202612_48_32PM.png"
             alt="Rapid Fire Texas Hold'em"
-            className="mx-auto max-w-2xl w-full"
+            style={{ maxWidth: '600px', width: '100%', margin: '0 auto', display: 'block', filter: 'drop-shadow(0 0 40px rgba(201,168,76,0.3))' }}
           />
         </div>
 
         {/* Tagline */}
-        <p className="text-white/80 text-lg md:text-xl font-light tracking-wider mb-3">
+        <p style={{ color: 'rgba(255,255,255,0.80)', fontSize: '1.125rem', fontWeight: 300, letterSpacing: '0.05em', marginBottom: '0.75rem' }}>
           A proprietary Electronic Table Game engineered for the modern casino floor.
         </p>
-        <p className="text-white/60 text-sm md:text-base font-light tracking-wide mb-10 max-w-2xl mx-auto">
-          Built on the <span className="text-gold font-medium">Cascade Crescendo</span> betting logic — delivering high-action engagement with precision operator control.
+        <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.9rem', fontWeight: 300, letterSpacing: '0.03em', marginBottom: '2.5rem', maxWidth: '560px', margin: '0 auto 2.5rem auto' }}>
+          Built on the <span style={{ color: '#C9A84C', fontWeight: 500 }}>Cascade Crescendo</span> betting logic — delivering high-action engagement with precision operator control.
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center', marginBottom: '3.5rem' }}>
           <a
             href="#overview"
-            className="px-8 py-3.5 border border-gold text-gold font-semibold text-sm tracking-[0.2em] uppercase hover:bg-gold hover:text-xfh-black transition-all duration-300"
+            style={{ padding: '0.875rem 2rem', border: '1px solid #C9A84C', color: '#C9A84C', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', textDecoration: 'none', transition: 'all 0.3s' }}
+            onMouseEnter={e => { e.target.style.backgroundColor = '#C9A84C'; e.target.style.color = '#0A0A0A'; }}
+            onMouseLeave={e => { e.target.style.backgroundColor = 'transparent'; e.target.style.color = '#C9A84C'; }}
           >
             Explore the Game
           </a>
           <a
             href="#contact"
-            className="px-8 py-3.5 bg-gold text-xfh-black font-bold text-sm tracking-[0.2em] uppercase hover:bg-gold-light transition-all duration-300"
+            style={{ padding: '0.875rem 2rem', backgroundColor: '#C9A84C', color: '#0A0A0A', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', textDecoration: 'none', transition: 'all 0.3s' }}
+            onMouseEnter={e => { e.target.style.backgroundColor = '#F5D78E'; }}
+            onMouseLeave={e => { e.target.style.backgroundColor = '#C9A84C'; }}
           >
             Request Demo
           </a>
         </div>
 
-        {/* Stat Badges */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12">
+        {/* Stats */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '2rem' }}>
           {[
             { icon: '🔥', stat: '9M+', label: 'Calibration Cycles' },
             { icon: '⚡', stat: '80–90', label: 'Rounds / Hour' },
             { icon: '🛡️', stat: '70/70', label: 'Gaming-Standard Math' },
           ].map((item) => (
-            <div key={item.label} className="flex items-center gap-2 text-white/60">
-              <span className="text-base">{item.icon}</span>
-              <span className="text-gold font-semibold text-sm">{item.stat}</span>
-              <span className="text-xs tracking-wider uppercase">{item.label}</span>
+            <div key={item.label} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'rgba(255,255,255,0.5)' }}>
+              <span style={{ fontSize: '1rem' }}>{item.icon}</span>
+              <span style={{ color: '#C9A84C', fontWeight: 600, fontSize: '0.875rem' }}>{item.stat}</span>
+              <span style={{ fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase' }}>{item.label}</span>
             </div>
           ))}
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30">
-        <span className="text-[10px] tracking-[0.3em] uppercase">Scroll</span>
-        <div className="w-px h-8 bg-gradient-to-b from-gold/50 to-transparent animate-pulse" />
+      <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', color: 'rgba(255,255,255,0.25)', zIndex: 3 }}>
+        <span style={{ fontSize: '0.6rem', letterSpacing: '0.3em', textTransform: 'uppercase' }}>Scroll</span>
+        <div style={{ width: '1px', height: '2rem', background: 'linear-gradient(to bottom, rgba(201,168,76,0.5), transparent)' }} />
       </div>
     </section>
   );
