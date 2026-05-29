@@ -11,7 +11,7 @@ const specCards = [
   {
     icon: '⚙️',
     title: 'Math Engine',
-    items: ['Proprietary Cascade Crescendo logic', 'Monte Carlo statistical validation', '9 million calibration cycle certification', 'Fully deterministic, reproducible outcomes'],
+    items: ['Proprietary Cascade Crescendo logic', 'Monte Carlo statistical validation', '2 million calibration test certifications', 'Fully deterministic, reproducible outcomes'],
   },
   {
     icon: '📋',
