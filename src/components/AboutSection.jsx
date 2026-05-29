@@ -2,10 +2,10 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function AboutSection() {
   const ref = useScrollReveal();
-
   return (
     <section id="about" style={{ backgroundColor: '#0D1420' }} className="py-24">
       <div className="max-w-7xl mx-auto px-6">
+
         <div ref={ref} className="reveal text-center mb-12">
           <div className="flex items-center justify-center gap-4 mb-4">
             <div className="h-px w-12 bg-gold/60" />
@@ -19,12 +19,13 @@ export default function AboutSection() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center max-w-5xl mx-auto">
-          {/* Studio Logo */}
-          <div className="card-dark rounded-sm overflow-hidden flex items-center justify-center p-10">
+
+          {/* EGM Cabinet Image */}
+          <div className="card-dark rounded-sm overflow-hidden flex items-center justify-center">
             <img
-              src="https://media.base44.com/images/public/user_69c5fbdb68e165c3f394466b/0aeb7043a_RapidFireBlueLogo.png"
-              alt="XFH Game Studio"
-              className="max-w-xs w-full"
+              src="https://base44.app/api/apps/69fcabf54838c8e18515a406/files/mp/public/69fcabf54838c8e18515a406/114c02eab_21c7c84bd_ChatGPTImageMay8202612_48_32PM.png"
+              alt="Rapid Fire Texas Hold'em EGM Cabinet"
+              style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
             />
           </div>
 
@@ -35,17 +36,15 @@ export default function AboutSection() {
             </div>
             <h3 className="font-playfair text-3xl text-white font-bold mb-1 mt-2">Michael Kellar</h3>
             <div className="text-gold text-sm tracking-wider mb-5">XFH Game Studio — Alberta, Canada</div>
-
             <p className="text-white/60 text-sm leading-relaxed mb-5">
               Creator of Rapid Fire Texas Hold'em — a proprietary hybrid EGM engine combining poker mechanics with slot machine pacing and roulette-style betting architecture. Over 9 million calibration cycles validated through Monte Carlo simulation.
             </p>
-
             <div className="space-y-3 mb-6">
               {[
                 { label: 'Full Certification Audit (eCOGRA)', status: '78/78 PASS', color: 'text-green-400' },
-                { label: 'GLI-11 / BMM Certification', status: '78/78 PASS', color: 'text-green-400' },
-                { label: 'Full Math & RTP Documentation', status: 'Available', color: 'text-green-400' },
-                { label: 'In-House Casino Standard Testing', status: 'Completed', color: 'text-green-400' },
+                { label: 'GLI-11 / BMM Certification',        status: '78/78 PASS', color: 'text-green-400' },
+                { label: 'Full Math & RTP Documentation',     status: 'Available',  color: 'text-green-400' },
+                { label: 'In-House Casino Standard Testing',  status: 'Completed',  color: 'text-green-400' },
               ].map(item => (
                 <div key={item.label} className="flex items-center justify-between py-2 border-b border-gold/10">
                   <span className="text-white/60 text-sm">{item.label}</span>
@@ -53,7 +52,6 @@ export default function AboutSection() {
                 </div>
               ))}
             </div>
-
             <a
               href="#contact"
               className="inline-block px-6 py-3 bg-gold text-xfh-black font-bold text-sm tracking-[0.2em] uppercase hover:bg-gold-light transition-all duration-300"
@@ -61,6 +59,7 @@ export default function AboutSection() {
               Partner With Us
             </a>
           </div>
+
         </div>
       </div>
     </section>
