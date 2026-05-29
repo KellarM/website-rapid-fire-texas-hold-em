@@ -32,13 +32,14 @@ export default function HeroSection() {
           <div style={{ height: '1px', width: '48px', backgroundColor: 'rgba(201,168,76,0.6)' }} />
         </div>
 
-        {/* Game Logo — the official title card */}
+        {/* Game Title */}
         <div style={{ marginBottom: '2rem' }}>
-          <img
-            src="https://media.base44.com/images/public/user_69c5fbdb68e165c3f394466b/1a038e55c_ChatGPTImageMay8202612_48_32PM.png"
-            alt="Rapid Fire Texas Hold'em"
-            style={{ maxWidth: '600px', width: '100%', margin: '0 auto', display: 'block', filter: 'drop-shadow(0 0 40px rgba(201,168,76,0.3))' }}
-          />
+          <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 'clamp(3rem, 10vw, 7rem)', color: '#C9A84C', letterSpacing: '0.08em', lineHeight: 1, margin: 0, filter: 'drop-shadow(0 0 40px rgba(201,168,76,0.3))' }}>
+            RAPID FIRE
+          </h1>
+          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.2rem, 4vw, 2.5rem)', color: '#ffffff', letterSpacing: '0.3em', margin: '0.25rem 0 0 0', fontWeight: 700, textTransform: 'uppercase' }}>
+            Texas Hold'em
+          </h2>
         </div>
 
         {/* Tagline */}
