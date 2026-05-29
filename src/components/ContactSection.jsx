@@ -1,13 +1,23 @@
 import { useState } from 'react';
 
+const inputStyle = {
+  backgroundColor: '#000000',
+  border: '1px solid #C9A84C',
+  color: '#C9A84C',
+  padding: '0.75rem 1rem',
+  width: '100%',
+  fontSize: '0.9rem',
+  outline: 'none',
+  borderRadius: 0,
+  fontFamily: 'inherit',
+};
+
+const inputFocus = { borderColor: '#F5D78E', color: '#ffffff' };
+const inputBlur  = { borderColor: '#C9A84C', color: '#C9A84C' };
+
 export default function ContactSection() {
   const [formData, setFormData] = useState({
-    name: '',
-    company: '',
-    role: '',
-    email: '',
-    interest: '',
-    message: '',
+    name: '', company: '', role: '', email: '', interest: '', message: '',
   });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -19,16 +29,13 @@ export default function ContactSection() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    // Sends to the site owner's registered email via Base44 form handling
     try {
       await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-    } catch (_) {
-      // Best-effort — show success regardless so UX stays clean
-    }
+    } catch (_) {}
     setSubmitting(false);
     setSubmitted(true);
   };
@@ -53,7 +60,7 @@ export default function ContactSection() {
         </div>
 
         {submitted ? (
-          <div className="card-dark rounded-sm p-12 text-center border border-gold/30">
+          <div style={{ border: '1px solid rgba(201,168,76,0.4)', backgroundColor: '#000' }} className="rounded-sm p-12 text-center">
             <div className="text-gold text-5xl mb-4">✓</div>
             <h3 className="font-playfair text-2xl text-white font-bold mb-3">Message Received</h3>
             <p className="text-white/50 text-sm max-w-md mx-auto">
@@ -61,83 +68,66 @@ export default function ContactSection() {
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="card-dark rounded-sm p-8 border border-gold/10">
+          <form onSubmit={handleSubmit} style={{ backgroundColor: '#000000', border: '1px solid #C9A84C' }} className="rounded-sm p-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
 
               {/* Name */}
               <div>
-                <label className="block text-white/50 text-xs tracking-widest uppercase mb-2">Full Name *</label>
+                <label className="block text-gold text-xs tracking-widest uppercase mb-2">Full Name *</label>
                 <input
-                  type="text"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
+                  type="text" name="name" required value={formData.name} onChange={handleChange}
                   placeholder="Jane Smith"
-                  style={{ backgroundColor: '#0A0A0A', border: '1px solid rgba(201,168,76,0.2)', color: '#fff', padding: '0.75rem 1rem', width: '100%', fontSize: '0.9rem', outline: 'none', borderRadius: 0 }}
-                  onFocus={e => e.target.style.borderColor = 'rgba(201,168,76,0.7)'}
-                  onBlur={e => e.target.style.borderColor = 'rgba(201,168,76,0.2)'}
+                  style={inputStyle}
+                  onFocus={e => Object.assign(e.target.style, inputFocus)}
+                  onBlur={e => Object.assign(e.target.style, inputBlur)}
                 />
               </div>
 
               {/* Company */}
               <div>
-                <label className="block text-white/50 text-xs tracking-widest uppercase mb-2">Company / Organization *</label>
+                <label className="block text-gold text-xs tracking-widest uppercase mb-2">Company / Organization *</label>
                 <input
-                  type="text"
-                  name="company"
-                  required
-                  value={formData.company}
-                  onChange={handleChange}
+                  type="text" name="company" required value={formData.company} onChange={handleChange}
                   placeholder="Acme Gaming Inc."
-                  style={{ backgroundColor: '#0A0A0A', border: '1px solid rgba(201,168,76,0.2)', color: '#fff', padding: '0.75rem 1rem', width: '100%', fontSize: '0.9rem', outline: 'none', borderRadius: 0 }}
-                  onFocus={e => e.target.style.borderColor = 'rgba(201,168,76,0.7)'}
-                  onBlur={e => e.target.style.borderColor = 'rgba(201,168,76,0.2)'}
+                  style={inputStyle}
+                  onFocus={e => Object.assign(e.target.style, inputFocus)}
+                  onBlur={e => Object.assign(e.target.style, inputBlur)}
                 />
               </div>
 
               {/* Role */}
               <div>
-                <label className="block text-white/50 text-xs tracking-widest uppercase mb-2">Your Role</label>
+                <label className="block text-gold text-xs tracking-widest uppercase mb-2">Your Role</label>
                 <input
-                  type="text"
-                  name="role"
-                  value={formData.role}
-                  onChange={handleChange}
+                  type="text" name="role" value={formData.role} onChange={handleChange}
                   placeholder="VP Gaming Operations"
-                  style={{ backgroundColor: '#0A0A0A', border: '1px solid rgba(201,168,76,0.2)', color: '#fff', padding: '0.75rem 1rem', width: '100%', fontSize: '0.9rem', outline: 'none', borderRadius: 0 }}
-                  onFocus={e => e.target.style.borderColor = 'rgba(201,168,76,0.7)'}
-                  onBlur={e => e.target.style.borderColor = 'rgba(201,168,76,0.2)'}
+                  style={inputStyle}
+                  onFocus={e => Object.assign(e.target.style, inputFocus)}
+                  onBlur={e => Object.assign(e.target.style, inputBlur)}
                 />
               </div>
 
               {/* Email */}
               <div>
-                <label className="block text-white/50 text-xs tracking-widest uppercase mb-2">Business Email *</label>
+                <label className="block text-gold text-xs tracking-widest uppercase mb-2">Business Email *</label>
                 <input
-                  type="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
+                  type="email" name="email" required value={formData.email} onChange={handleChange}
                   placeholder="jane@company.com"
-                  style={{ backgroundColor: '#0A0A0A', border: '1px solid rgba(201,168,76,0.2)', color: '#fff', padding: '0.75rem 1rem', width: '100%', fontSize: '0.9rem', outline: 'none', borderRadius: 0 }}
-                  onFocus={e => e.target.style.borderColor = 'rgba(201,168,76,0.7)'}
-                  onBlur={e => e.target.style.borderColor = 'rgba(201,168,76,0.2)'}
+                  style={inputStyle}
+                  onFocus={e => Object.assign(e.target.style, inputFocus)}
+                  onBlur={e => Object.assign(e.target.style, inputBlur)}
                 />
               </div>
             </div>
 
             {/* Interest */}
             <div className="mb-5">
-              <label className="block text-white/50 text-xs tracking-widest uppercase mb-2">Area of Interest</label>
+              <label className="block text-gold text-xs tracking-widest uppercase mb-2">Area of Interest</label>
               <select
-                name="interest"
-                value={formData.interest}
-                onChange={handleChange}
-                style={{ backgroundColor: '#0A0A0A', border: '1px solid rgba(201,168,76,0.2)', color: formData.interest ? '#fff' : 'rgba(255,255,255,0.3)', padding: '0.75rem 1rem', width: '100%', fontSize: '0.9rem', outline: 'none', borderRadius: 0 }}
-                onFocus={e => e.target.style.borderColor = 'rgba(201,168,76,0.7)'}
-                onBlur={e => e.target.style.borderColor = 'rgba(201,168,76,0.2)'}
+                name="interest" value={formData.interest} onChange={handleChange}
+                style={{ ...inputStyle, color: formData.interest ? '#C9A84C' : 'rgba(201,168,76,0.4)' }}
+                onFocus={e => Object.assign(e.target.style, inputFocus)}
+                onBlur={e => Object.assign(e.target.style, inputBlur)}
               >
                 <option value="">Select one...</option>
                 <option value="licensing">Engine Licensing</option>
@@ -152,34 +142,53 @@ export default function ContactSection() {
 
             {/* Message */}
             <div className="mb-8">
-              <label className="block text-white/50 text-xs tracking-widest uppercase mb-2">Message *</label>
+              <label className="block text-gold text-xs tracking-widest uppercase mb-2">Message *</label>
               <textarea
-                name="message"
-                required
-                rows={5}
-                value={formData.message}
-                onChange={handleChange}
+                name="message" required rows={5} value={formData.message} onChange={handleChange}
                 placeholder="Tell us about your organization and what you're looking for..."
-                style={{ backgroundColor: '#0A0A0A', border: '1px solid rgba(201,168,76,0.2)', color: '#fff', padding: '0.75rem 1rem', width: '100%', fontSize: '0.9rem', outline: 'none', borderRadius: 0, resize: 'vertical', fontFamily: 'inherit' }}
-                onFocus={e => e.target.style.borderColor = 'rgba(201,168,76,0.7)'}
-                onBlur={e => e.target.style.borderColor = 'rgba(201,168,76,0.2)'}
+                style={{ ...inputStyle, resize: 'vertical' }}
+                onFocus={e => Object.assign(e.target.style, { ...inputFocus, resize: 'vertical' })}
+                onBlur={e => Object.assign(e.target.style, { ...inputBlur, resize: 'vertical' })}
               />
             </div>
 
+            {/* Footer row */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <p className="text-white/25 text-xs">
-                All inquiries are kept strictly confidential. NDA available upon request.
+              <p className="text-gold/30 text-xs">
+                Patent Pending — Application No. 3311959. All inquiries kept strictly confidential.
               </p>
               <button
                 type="submit"
                 disabled={submitting}
-                style={{ backgroundColor: '#C9A84C', color: '#0A0A0A', padding: '0.875rem 2.5rem', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', border: 'none', cursor: submitting ? 'not-allowed' : 'pointer', opacity: submitting ? 0.7 : 1, transition: 'all 0.3s', whiteSpace: 'nowrap' }}
-                onMouseEnter={e => { if (!submitting) e.target.style.backgroundColor = '#F5D78E'; }}
-                onMouseLeave={e => { e.target.style.backgroundColor = '#C9A84C'; }}
+                style={{
+                  backgroundColor: '#000000',
+                  color: '#C9A84C',
+                  border: '1px solid #C9A84C',
+                  padding: '0.875rem 2.5rem',
+                  fontSize: '0.75rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  cursor: submitting ? 'not-allowed' : 'pointer',
+                  opacity: submitting ? 0.6 : 1,
+                  transition: 'all 0.3s',
+                  whiteSpace: 'nowrap',
+                }}
+                onMouseEnter={e => {
+                  if (!submitting) {
+                    e.target.style.backgroundColor = '#C9A84C';
+                    e.target.style.color = '#000000';
+                  }
+                }}
+                onMouseLeave={e => {
+                  e.target.style.backgroundColor = '#000000';
+                  e.target.style.color = '#C9A84C';
+                }}
               >
                 {submitting ? 'Sending...' : 'Send Inquiry'}
               </button>
             </div>
+
           </form>
         )}
 
