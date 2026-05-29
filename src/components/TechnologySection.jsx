@@ -79,6 +79,53 @@ export default function TechnologySection() {
           ))}
         </div>
 
+        {/* 52-Card Deck Engine */}
+        <div className="card-dark rounded-sm overflow-hidden mb-14 border border-gold/20">
+          <div className="p-6 border-b border-gold/10">
+            <span className="section-label">Game Methodology</span>
+            <h3 className="text-white text-2xl font-playfair font-bold mt-1">Unified 52-Card Proprietary Engine</h3>
+            <p className="text-white/50 text-sm mt-1 italic">Standard Integrity. Engineered Velocity.</p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-gold/10">
+            {/* Deck Architecture */}
+            <div className="p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-gold font-bebas text-lg tracking-widest">1.</span>
+                <h4 className="text-gold font-semibold text-sm tracking-wide uppercase">Deck Architecture</h4>
+              </div>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-2 text-sm text-white/60"><span className="text-gold mt-0.5 flex-shrink-0">•</span><span><span className="text-white font-medium">Standard Deck Integrity:</span> Every round utilizes a full 52-card standard deck — no jokers, no wild cards.</span></li>
+                <li className="flex items-start gap-2 text-sm text-white/60"><span className="text-gold mt-0.5 flex-shrink-0">•</span><span><span className="text-white font-medium">20 Fixed-Hand Cards:</span> 10 pre-determined player hands (2 cards each) permanently carded for consistent player choices.</span></li>
+                <li className="flex items-start gap-2 text-sm text-white/60"><span className="text-gold mt-0.5 flex-shrink-0">•</span><span><span className="text-white font-medium">32-Card Community Stock:</span> The remaining 32 cards form the high-velocity community pool, reshuffled every round for maximum mathematical volatility.</span></li>
+              </ul>
+            </div>
+            {/* Multi-Hand Evaluation */}
+            <div className="p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-gold font-bebas text-lg tracking-widest">2.</span>
+                <h4 className="text-gold font-semibold text-sm tracking-wide uppercase">Simultaneous Multi-Hand Evaluation</h4>
+              </div>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-2 text-sm text-white/60"><span className="text-gold mt-0.5 flex-shrink-0">•</span><span><span className="text-white font-medium">One-to-Many Processing:</span> The engine evaluates all 10 hands against the same community board in a single unified run.</span></li>
+                <li className="flex items-start gap-2 text-sm text-white/60"><span className="text-gold mt-0.5 flex-shrink-0">•</span><span><span className="text-white font-medium">Shared-Win Logic:</span> Proprietary handling for tied hands (Splits) maintains house edge while rewarding multiple players.</span></li>
+                <li className="flex items-start gap-2 text-sm text-white/60"><span className="text-gold mt-0.5 flex-shrink-0">•</span><span><span className="text-white font-medium">Uncorrelated Liability:</span> Independent bet resolution across 78+ possible positions in every game cycle.</span></li>
+              </ul>
+            </div>
+            {/* Performance & Stability */}
+            <div className="p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-gold font-bebas text-lg tracking-widest">3.</span>
+                <h4 className="text-gold font-semibold text-sm tracking-wide uppercase">Performance & Stability</h4>
+              </div>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-2 text-sm text-white/60"><span className="text-gold mt-0.5 flex-shrink-0">•</span><span><span className="text-white font-medium">80 Rounds Per Hour:</span> Optimized deal sequence removes all human/dealer delay.</span></li>
+                <li className="flex items-start gap-2 text-sm text-white/60"><span className="text-gold mt-0.5 flex-shrink-0">•</span><span><span className="text-white font-medium">Data-Verified Consistency:</span> Blended RTP of 96.46% based on internal simulations of 2,000,000 rounds per position.</span></li>
+                <li className="flex items-start gap-2 text-sm text-white/60"><span className="text-gold mt-0.5 flex-shrink-0">•</span><span><span className="text-white font-medium">Platform-Agnostic Build:</span> Built in React/Vite for seamless integration into EGM cabinets or iGaming RGS environments.</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
         {/* Spec Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-14">
           {specCards.map(card => (
