@@ -77,11 +77,11 @@ export default function OverviewSection() {
             <p className="text-white/50 text-sm mt-1">10-seat multi-player layout with live odds, community cards, and four bet zones — all in one unified display.</p>
           </div>
 
-          <div className="relative">
+          <div style={{ backgroundColor: '#0A0A0A', display: 'flex', justifyContent: 'center', padding: '1.5rem' }}>
             <img
               src="https://media.base44.com/images/public/6a18db090bc2bcd630da3665/324bd09f6_image.png"
               alt="Game Interface"
-              style={{ width: '100%', height: 'auto', display: 'block' }}
+              style={{ maxWidth: '100%', width: 'auto', height: 'auto', display: 'block', imageRendering: 'crisp-edges' }}
             />
           </div>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-0 border-t border-gold/10">
