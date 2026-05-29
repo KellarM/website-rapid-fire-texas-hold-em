@@ -9,7 +9,7 @@ const features = [
   {
     icon: '📊',
     title: 'Mathematical Rigor',
-    desc: '9 million calibration cycles and Monte Carlo test simulations ensure the highest level of mathematical integrity and repeatable performance required for regulated environments.',
+    desc: 'Over 20 million calibration cycles and Monte Carlo test simulations ensure the highest level of mathematical integrity and repeatable performance required for regulated environments.',
   },
   {
     icon: '🔺',
@@ -28,8 +28,8 @@ const features = [
   },
   {
     icon: '👥',
-    title: 'Multi-Player Shared Experience',
-    desc: 'Fully functional as a shared terminal experience, allowing multiple players to participate simultaneously — creating the community atmosphere essential for successful ETG installations.',
+    title: 'Single or Multi-Player Shared Experience',
+    desc: 'Stand alone / bundled cabinet or Fully functional as a shared terminal experience, allowing multiple players to participate simultaneously — creating the community atmosphere essential for successful ETG installations.',
   },
 ];
 
