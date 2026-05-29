@@ -44,7 +44,7 @@ export default function HeroSection() {
           A proprietary Electronic Gaming Machine engineered for the modern casino floor — and Stadium Gaming environments.
         </p>
         <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.9rem', fontWeight: 300, letterSpacing: '0.03em', marginBottom: '2.5rem', maxWidth: '580px', margin: '0 auto 2.5rem auto' }}>
-          Built on the <span style={{ color: '#C9A84C', fontWeight: 500 }}>Cascade Crescendo</span> betting logic and Snowball Cap— delivering high-action engagement with precision operator control. Single terminal or full stadium multi-player configuration.
+          Built on the <span style={{ color: '#C9A84C', fontWeight: 500 }}>Cascade Crescendo</span> betting logic with a Snowball Cap— delivering high-action engagement with precision operator control. Single terminal or full stadium multi-player configuration.
         </p>
 
         {/* CTAs */}
