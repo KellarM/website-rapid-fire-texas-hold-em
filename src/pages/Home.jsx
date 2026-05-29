@@ -1,0 +1,31 @@
+import NavBar from '../components/NavBar';
+import HeroSection from '../components/HeroSection';
+import OverviewSection from '../components/OverviewSection';
+import CascadeSection from '../components/CascadeSection';
+import TechnologySection from '../components/TechnologySection';
+import CompetitiveSection from '../components/CompetitiveSection';
+import MarketSection from '../components/MarketSection';
+import LicensingSection from '../components/LicensingSection';
+import GallerySection from '../components/GallerySection';
+import AboutSection from '../components/AboutSection';
+import ContactSection from '../components/ContactSection';
+import Footer from '../components/Footer';
+
+export default function Home() {
+  return (
+    <div className="min-h-screen bg-xfh-black">
+      <NavBar />
+      <HeroSection />
+      <OverviewSection />
+      <CascadeSection />
+      <TechnologySection />
+      <CompetitiveSection />
+      <MarketSection />
+      <LicensingSection />
+      <GallerySection />
+      <AboutSection />
+      <ContactSection />
+      <Footer />
+    </div>
+  );
+}
