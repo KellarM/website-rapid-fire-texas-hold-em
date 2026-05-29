@@ -10,6 +10,9 @@ import AboutSection from '../components/AboutSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 
+// NOTE: GallerySection has been removed from this page intentionally.
+// The GallerySection.jsx component file can be deleted from /src/components/
+
 export default function Home() {
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#0A0A0A' }}>
