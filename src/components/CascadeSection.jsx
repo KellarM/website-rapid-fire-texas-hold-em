@@ -20,14 +20,14 @@ const steps = [
     title: 'Color Board',
     badge: 'UNLOCKED',
     sub: 'RED VS. BLACK SIDE ACTION',
-    desc: 'Unlocked by Rank Bet, the Color Board offers 3, 4, or 5 card Red/Black bets with tiered payouts. Players build their stake tower as community cards are progressively revealed.',
+    desc: 'Unlocked by Rank Bet, the Color Board offers 3, 4, or 5 card Red/Black bets with individual payouts. Players build their stake tower as community cards are progressively revealed.',
   },
   {
     num: '04',
     title: 'River Bet',
     badge: 'UNLOCKED',
     sub: 'THE CRESCENDO',
-    desc: 'The River — Low (2–7) or High (8–A) — is the final and largest unlocked bet. By the fifth card, maximum capital is committed at the peak of player engagement and tension.',
+    desc: 'The River — Low (2–7) or High (8–A) — is the final and largest unlocked bet. With the four cards visible, maximum capital is committed at the peak of player engagement and tension.',
   },
 ];
 
