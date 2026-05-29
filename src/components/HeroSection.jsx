@@ -1,13 +1,10 @@
 export default function HeroSection() {
   return (
-    <section
-      id="hero"
-      style={{ backgroundColor: '#0A0A0A', minHeight: '100vh', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}
-    >
+    <section id="hero" style={{ backgroundColor: '#0A0A0A', minHeight: '100vh', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
       {/* Dark bg guarantee */}
       <div style={{ position: 'absolute', inset: 0, backgroundColor: '#0A0A0A', zIndex: 0 }} />
 
-      {/* Background image — the game logo/speed visual */}
+      {/* Background image */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
         <img
           src="https://media.base44.com/images/public/user_69c5fbdb68e165c3f394466b/3be455822_SpeedofPoker.png"
@@ -44,38 +41,34 @@ export default function HeroSection() {
 
         {/* Tagline */}
         <p style={{ color: 'rgba(255,255,255,0.80)', fontSize: '1.125rem', fontWeight: 300, letterSpacing: '0.05em', marginBottom: '0.75rem' }}>
-          A proprietary Electronic Table Game engineered for the modern casino floor.
+          A proprietary Electronic Gaming Machine engineered for the modern casino floor — and Stadium Gaming environments.
         </p>
-        <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.9rem', fontWeight: 300, letterSpacing: '0.03em', marginBottom: '2.5rem', maxWidth: '560px', margin: '0 auto 2.5rem auto' }}>
-          Built on the <span style={{ color: '#C9A84C', fontWeight: 500 }}>Cascade Crescendo</span> betting logic — delivering high-action engagement with precision operator control.
+        <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.9rem', fontWeight: 300, letterSpacing: '0.03em', marginBottom: '2.5rem', maxWidth: '580px', margin: '0 auto 2.5rem auto' }}>
+          Built on the <span style={{ color: '#C9A84C', fontWeight: 500 }}>Cascade Crescendo</span> betting logic — delivering high-action engagement with precision operator control. Single terminal or full stadium multi-player configuration.
         </p>
 
         {/* CTAs */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center', marginBottom: '3.5rem' }}>
-          <a
-            href="#overview"
+          <a href="#overview"
             style={{ padding: '0.875rem 2rem', border: '1px solid #C9A84C', color: '#C9A84C', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', textDecoration: 'none', transition: 'all 0.3s' }}
             onMouseEnter={e => { e.target.style.backgroundColor = '#C9A84C'; e.target.style.color = '#0A0A0A'; }}
-            onMouseLeave={e => { e.target.style.backgroundColor = 'transparent'; e.target.style.color = '#C9A84C'; }}
-          >
+            onMouseLeave={e => { e.target.style.backgroundColor = 'transparent'; e.target.style.color = '#C9A84C'; }}>
             Explore the Game
           </a>
-          <a
-            href="#contact"
+          <a href="#contact"
             style={{ padding: '0.875rem 2rem', backgroundColor: '#C9A84C', color: '#0A0A0A', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', textDecoration: 'none', transition: 'all 0.3s' }}
             onMouseEnter={e => { e.target.style.backgroundColor = '#F5D78E'; }}
-            onMouseLeave={e => { e.target.style.backgroundColor = '#C9A84C'; }}
-          >
-            Request Demo
+            onMouseLeave={e => { e.target.style.backgroundColor = '#C9A84C'; }}>
+            Request a Demo
           </a>
         </div>
 
-        {/* Stats */}
+        {/* Stats bar — corrected */}
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '2rem' }}>
           {[
-            { icon: '🔥', stat: '9M+', label: 'Calibration Cycles' },
-            { icon: '⚡', stat: '80–90', label: 'Rounds / Hour' },
-            { icon: '🛡️', stat: '78/78', label: 'Gaming-Standard Math' },
+            { icon: '🔥', stat: '2M+', label: 'Certified Wins / Position' },
+            { icon: '⚡', stat: 'Up to 80', label: 'Rounds / Hour' },
+            { icon: '🛡️', stat: '78/78', label: 'Bet Positions Validated' },
           ].map((item) => (
             <div key={item.label} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'rgba(255,255,255,0.5)' }}>
               <span style={{ fontSize: '1rem' }}>{item.icon}</span>
