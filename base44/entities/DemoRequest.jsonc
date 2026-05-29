@@ -1,0 +1,71 @@
+{
+  "name": "DemoRequest",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "description": "Full name of the requester"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address"
+    },
+    "role_interest": {
+      "type": "string",
+      "enum": [
+        "ETG Operator",
+        "Casino Technology Integrator",
+        "Gaming Distributor",
+        "iGaming Platform",
+        "Investor",
+        "Other"
+      ],
+      "description": "Role or interest of the requester"
+    },
+    "message": {
+      "type": "string",
+      "description": "Message from the requester"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of submission"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "New",
+        "Reviewed",
+        "Contacted"
+      ],
+      "default": "New",
+      "description": "Status of the demo request"
+    }
+  },
+  "required": [
+    "full_name",
+    "email"
+  ],
+  "rls": {
+    "create": {},
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
