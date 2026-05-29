@@ -79,7 +79,7 @@ export default function OverviewSection() {
 
           <div className="relative">
             <img
-              src="https://media.base44.com/images/public/6a18db090bc2bcd630da3665/20021bfca_image.png"
+              src="https://media.base44.com/images/public/6a18db090bc2bcd630da3665/324bd09f6_image.png"
               alt="Game Interface"
               style={{ width: '100%', height: 'auto', display: 'block' }}
             />
