@@ -5,7 +5,6 @@ const navLinks = [
   { label: 'The Cascade', href: '#cascade' },
   { label: 'Technology', href: '#technology' },
   { label: 'Competitive', href: '#competitive' },
-  { label: 'Gallery', href: '#gallery' },
   { label: 'Contact', href: '#contact' },
 ];
 
