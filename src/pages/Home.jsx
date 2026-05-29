@@ -6,7 +6,6 @@ import TechnologySection from '../components/TechnologySection';
 import CompetitiveSection from '../components/CompetitiveSection';
 import MarketSection from '../components/MarketSection';
 import LicensingSection from '../components/LicensingSection';
-import GallerySection from '../components/GallerySection';
 import AboutSection from '../components/AboutSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
@@ -22,7 +21,6 @@ export default function Home() {
       <CompetitiveSection />
       <MarketSection />
       <LicensingSection />
-      <GallerySection />
       <AboutSection />
       <ContactSection />
       <Footer />
