@@ -99,15 +99,15 @@ export default function CascadeSection() {
           <div className="flex flex-col gap-5">
             <div className="card-dark rounded-sm overflow-hidden flex-1">
               <img
-                src="https://media.base44.com/images/public/user_69c5fbdb68e165c3f394466b/2ebf10514_TheSnowball.png"
+                src="https://media.base44.com/images/public/6a18db090bc2bcd630da3665/ac1c1df10_image.png"
                 alt="The Cascade — Revenue Redefined"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             </div>
             {/* Stat row */}
             <div className="grid grid-cols-3 gap-3">
               {[
-                { num: '9', label: 'Hand Ranks', sub: 'Payout Tiers' },
+                { num: '7', label: 'Hand Ranks', sub: 'Payout Tiers' },
                 { num: '6', label: 'Color Board', sub: 'Positions' },
                 { num: '2', label: 'River', sub: 'Side Bets' },
               ].map(item => (

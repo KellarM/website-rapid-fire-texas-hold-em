@@ -42,10 +42,10 @@ export default function AboutSection() {
 
             <div className="space-y-3 mb-6">
               {[
-                { label: 'AGLC Due Diligence', status: 'Active', color: 'text-green-400' },
-                { label: 'GL/BMM Certification', status: 'In Progress', color: 'text-gold' },
+                { label: 'Full Certification Audit (eCOGRA)', status: '78/78 PASS', color: 'text-green-400' },
+                { label: 'GLI-11 / BMM Certification', status: '78/78 PASS', color: 'text-green-400' },
                 { label: 'Full Math & RTP Documentation', status: 'Available', color: 'text-green-400' },
-                { label: 'Independent Math Audit', status: 'Compatible', color: 'text-green-400' },
+                { label: 'In-House Casino Standard Testing', status: 'Completed', color: 'text-green-400' },
               ].map(item => (
                 <div key={item.label} className="flex items-center justify-between py-2 border-b border-gold/10">
                   <span className="text-white/60 text-sm">{item.label}</span>

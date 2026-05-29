@@ -73,12 +73,12 @@ export default function OverviewSection() {
         <div className="card-dark rounded-sm overflow-hidden">
           <div className="p-6 border-b border-gold/10">
             <span className="section-label">Game Interface</span>
-            <h3 className="text-white text-2xl font-playfair font-bold mt-1">Texas 10 Terminal Interface</h3>
+            <h3 className="text-white text-2xl font-playfair font-bold mt-1">Rapid Fire Texas Hold'em Terminal Interface</h3>
             <p className="text-white/50 text-sm mt-1">10-seat multi-player layout with live odds, community cards, and four bet zones — all in one unified display.</p>
           </div>
           <div className="relative">
             <img
-              src="https://media.base44.com/images/public/user_69c5fbdb68e165c3f394466b/7d0407f48_image.png"
+              src="https://media.base44.com/images/public/6a18db090bc2bcd630da3665/bd15b38d5_image.png"
               alt="Game Interface"
               className="w-full object-cover"
             />

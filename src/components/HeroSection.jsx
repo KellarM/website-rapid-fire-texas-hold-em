@@ -74,7 +74,7 @@ export default function HeroSection() {
           {[
             { icon: '🔥', stat: '9M+', label: 'Calibration Cycles' },
             { icon: '⚡', stat: '80–90', label: 'Rounds / Hour' },
-            { icon: '🛡️', stat: '70/70', label: 'Gaming-Standard Math' },
+            { icon: '🛡️', stat: '78/78', label: 'Gaming-Standard Math' },
           ].map((item) => (
             <div key={item.label} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'rgba(255,255,255,0.5)' }}>
               <span style={{ fontSize: '1rem' }}>{item.icon}</span>

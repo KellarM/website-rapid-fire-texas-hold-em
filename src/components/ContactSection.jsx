@@ -47,7 +47,7 @@ export default function ContactSection() {
                 <div className="w-8 h-8 border border-gold/30 flex items-center justify-center text-gold text-sm flex-shrink-0">✉</div>
                 <div>
                   <div className="text-white/40 text-[10px] uppercase tracking-wider">Email</div>
-                  <a href="mailto:contact@xfhgamestudioltd.com" className="text-gold hover:text-gold-light text-sm transition-colors">contact@xfhgamestudioltd.com</a>
+                  <a href="mailto:Kellarm@xfhgamestudioltd.com" className="text-gold hover:text-gold-light text-sm transition-colors">Kellarm@xfhgamestudioltd.com</a>
                 </div>
               </div>
               <div className="flex items-center gap-3">

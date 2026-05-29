@@ -16,7 +16,7 @@ const specCards = [
   {
     icon: '📋',
     title: 'Payout Structure',
-    items: ['Hand Rank Board: 9 tier payout table', 'Straight Flush: 255.42:1', 'Color Board: 6 red/black side positions', 'River Low/High: Dual-position bet'],
+    items: ['Hand Rank Board: 7 tier payout table', 'Color Board: 6 red/black side positions', 'River Low/High: Dual-position bet'],
   },
   {
     icon: '🎯',
@@ -104,7 +104,7 @@ export default function TechnologySection() {
           <div className="p-6 border-b border-gold/10">
             <span className="section-label">Simulation Data & Regulatory Compliance</span>
             <h3 className="text-white text-xl font-playfair font-bold mt-1">Data-Verified Engine Stability Across Four Simulation Tiers</h3>
-            <p className="text-white/40 text-sm mt-1">Internal simulation calibrated to GLI-11 / BMM Technical / eCOGRA published standards.</p>
+            <p className="text-white/40 text-sm mt-1">All certifications completed through in-house testing modelled off real casino standards and regulations (GLI-11 / BMM Technical / eCOGRA).</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-0 divide-x divide-gold/10">
             {certTiers.map(tier => (
@@ -114,7 +114,7 @@ export default function TechnologySection() {
                 <div className="text-white/50 text-xs mb-2">Blended RTP</div>
                 <div className="text-white/40 text-xs">{tier.rounds} Rounds</div>
                 <div className="mt-3 inline-block px-2 py-0.5 bg-green-500/20 border border-green-500/40 text-green-400 text-[10px] font-bold tracking-wider">
-                  70/70 {tier.result}
+                  78/78 {tier.result}
                 </div>
               </div>
             ))}
