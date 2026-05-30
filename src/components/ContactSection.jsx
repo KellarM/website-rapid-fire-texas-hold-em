@@ -1,9 +1,6 @@
-// build: 2026053001
+// build: 2026053002
 import { useState } from 'react';
-
-const EMAILJS_SERVICE_ID  = 'service_xt83ycl';
-const EMAILJS_TEMPLATE_ID = 'template_0n87fkn';
-const EMAILJS_PUBLIC_KEY  = 're_euEgsnYT_gPyeDzshy6NYEscRcJsPi6aX';
+import { base44 } from '@/api/base44Client';
 
 const inputStyle = {
   backgroundColor: '#000000',
@@ -17,24 +14,6 @@ const inputStyle = {
   fontFamily: 'inherit',
   boxSizing: 'border-box',
 };
-
-async function sendEmail(params) {
-  const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      service_id:      EMAILJS_SERVICE_ID,
-      template_id:     EMAILJS_TEMPLATE_ID,
-      user_id:         EMAILJS_PUBLIC_KEY,
-      template_params: params,
-    }),
-  });
-  const text = await response.text();
-  if (!response.ok) {
-    throw new Error(`[${response.status}] ${text}`);
-  }
-  return text;
-}
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -54,18 +33,17 @@ export default function ContactSection() {
     setError('');
 
     try {
-      await sendEmail({
-        name:     formData.name,
-        company:  formData.company,
-        role:     formData.role || 'Not provided',
-        email:    formData.email,
-        interest: formData.interest || 'Not specified',
-        message:  formData.message,
+      await base44.functions.invoke('submitDemoRequest', {
+        full_name: formData.name,
+        company: formData.company,
+        email: formData.email,
+        role_interest: formData.role || formData.interest || '',
+        message: formData.message,
       });
       setSubmitted(true);
     } catch (err) {
-      console.error('EmailJS send error:', err.message);
-      setError(`Unable to send your message (${err.message}). Please email kellarm@xfhgamestudioltd.com directly.`);
+      console.error('Submit error:', err.message);
+      setError(`Unable to send your message. Please email kellarm@xfhgamestudioltd.com directly.`);
     } finally {
       setSubmitting(false);
     }
@@ -142,12 +120,11 @@ export default function ContactSection() {
                 onFocus={e => { e.target.style.borderColor = '#F5D78E'; e.target.style.color = '#ffffff'; }}
                 onBlur={e => { e.target.style.borderColor = '#C9A84C'; e.target.style.color = formData.interest ? '#C9A84C' : 'rgba(201,168,76,0.4)'; }}>
                 <option value="">Select one...</option>
-                <option value="Engine Licensing">Engine Licensing</option>
-                <option value="Manufacturing Partnership">Manufacturing Partnership</option>
-                <option value="iGaming / RGS Platform">iGaming / RGS Platform</option>
-                <option value="Stadium Gaming Configuration">Stadium Gaming Configuration</option>
-                <option value="Investment / Funding">Investment / Funding</option>
-                <option value="Regulatory / Certification">Regulatory / Certification</option>
+                <option value="ETG Operator">ETG Operator</option>
+                <option value="Casino Technology Integrator">Casino Technology Integrator</option>
+                <option value="Gaming Distributor">Gaming Distributor</option>
+                <option value="iGaming Platform">iGaming Platform</option>
+                <option value="Investor">Investor</option>
                 <option value="Other">Other</option>
               </select>
             </div>
@@ -188,7 +165,6 @@ export default function ContactSection() {
           </form>
         )}
 
-        {/* Email only — no phone number */}
         <div style={{ marginTop: '2rem', textAlign: 'center' }}>
           <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.75rem' }}>
             Prefer direct contact? &nbsp;
