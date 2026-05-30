@@ -1,3 +1,4 @@
+import { useAnalyticsTracker } from '../hooks/useAnalyticsTracker';
 import NavBar from '../components/NavBar';
 import HeroSection from '../components/HeroSection';
 import OverviewSection from '../components/OverviewSection';
@@ -12,6 +13,7 @@ import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 
 export default function Home() {
+  useAnalyticsTracker();
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#0A0A0A' }}>
       <NavBar />
