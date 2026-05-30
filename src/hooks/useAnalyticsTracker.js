@@ -18,7 +18,7 @@ function getDevice() {
   return 'desktop';
 }
 
-// Save event to AnalyticsEvent entity (works on all devices, live + preview)
+// Save event via backend function (works for unauthenticated visitors)
 export function trackEvent(eventName, properties = {}) {
   const payload = {
     event_name: eventName,
@@ -28,33 +28,45 @@ export function trackEvent(eventName, properties = {}) {
     screen_width: window.innerWidth,
     ...properties,
   };
-  // Fire and forget — don't block anything
-  base44.entities.AnalyticsEvent.create(payload).catch(() => {});
+  // Fire and forget via backend function (service role — no auth needed)
+  base44.functions.invoke('trackAnalyticsEvent', payload).catch((e) => {
+    console.warn('[Analytics] Failed to track event:', eventName, e?.message);
+  });
 }
 
 // Hook: attach all passive tracking on mount
 export function useAnalyticsTracker() {
   useEffect(() => {
-    // Page visit
-    trackEvent('page_visit', {
-      referrer: document.referrer || 'direct',
-    });
-
-    // Time on page — use visibilitychange for mobile (beforeunload unreliable on mobile)
-    const startTime = Date.now();
-    const handleExit = () => {
-      if (document.visibilityState === 'hidden') {
-        const seconds = Math.round((Date.now() - startTime) / 1000);
-        trackEvent('time_on_page', { seconds });
+    // Page visit — capture referrer (the actual source site)
+    const referrerUrl = document.referrer;
+    let referrerLabel = 'direct';
+    if (referrerUrl) {
+      try {
+        referrerLabel = new URL(referrerUrl).hostname;
+      } catch {
+        referrerLabel = referrerUrl;
       }
-    };
-    document.addEventListener('visibilitychange', handleExit);
-    window.addEventListener('beforeunload', () => {
+    }
+    trackEvent('page_visit', { referrer: referrerLabel });
+
+    // Time on page — use visibilitychange for mobile reliability
+    const startTime = Date.now();
+    let exitTracked = false;
+    const trackExit = () => {
+      if (exitTracked) return;
+      exitTracked = true;
       const seconds = Math.round((Date.now() - startTime) / 1000);
       trackEvent('time_on_page', { seconds });
-    });
+    };
 
-    // Section views via IntersectionObserver
+    const handleVisibility = () => {
+      if (document.visibilityState === 'hidden') trackExit();
+    };
+
+    document.addEventListener('visibilitychange', handleVisibility);
+    window.addEventListener('beforeunload', trackExit);
+
+    // Section views via IntersectionObserver — fire ONCE per section per session
     const sectionIds = ['overview', 'cascade', 'technology', 'competitive', 'contact', 'gallery'];
     const observers = [];
     sectionIds.forEach(id => {
@@ -71,7 +83,8 @@ export function useAnalyticsTracker() {
     });
 
     return () => {
-      document.removeEventListener('visibilitychange', handleExit);
+      document.removeEventListener('visibilitychange', handleVisibility);
+      window.removeEventListener('beforeunload', trackExit);
       observers.forEach(o => o.disconnect());
     };
   }, []);

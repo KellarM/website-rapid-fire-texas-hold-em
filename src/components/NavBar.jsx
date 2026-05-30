@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { trackEvent } from '../hooks/useAnalyticsTracker';
+import { trackEvent } from '@/hooks/useAnalyticsTracker';
 import AnalyticsDashboard from './AnalyticsDashboard';
 
 const navLinks = [

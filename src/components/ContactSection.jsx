@@ -1,6 +1,7 @@
 // build: 2026053002
 import { useState } from 'react';
 import { base44 } from '@/api/base44Client';
+import { trackEvent } from '@/hooks/useAnalyticsTracker';
 
 const inputStyle = {
   backgroundColor: '#000000',
@@ -40,6 +41,7 @@ export default function ContactSection() {
         role_interest: formData.role || formData.interest || '',
         message: formData.message,
       });
+      trackEvent('demo_request_submitted', { label: formData.email });
       setSubmitted(true);
     } catch (err) {
       console.error('Submit error:', err.message);
