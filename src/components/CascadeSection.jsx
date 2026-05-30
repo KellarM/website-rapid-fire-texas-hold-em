@@ -104,15 +104,6 @@ export default function CascadeSection() {
                 style={{ width: '100%', height: 'auto', objectFit: 'contain', display: 'block' }}
               />
             </div>
-            {/* Revenue Image */}
-            <div className="card-dark rounded-sm overflow-hidden">
-              <img
-                src="https://media.base44.com/images/public/6a18db090bc2bcd630da3665/2ce08353a_image.png"
-                alt="A $5 Starter Naturally Grows Into a $20+ Round"
-                className="w-full h-auto block"
-              />
-            </div>
-
             {/* Stat row */}
             <div className="grid grid-cols-4 gap-3">
               {[
