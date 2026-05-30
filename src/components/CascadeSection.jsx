@@ -122,15 +122,6 @@ export default function CascadeSection() {
           </div>
         </div>
 
-        {/* Cascade Revenue Image */}
-        <div className="mb-16">
-          <img
-            src="https://media.base44.com/images/public/6a18db090bc2bcd630da3665/2ce08353a_image.png"
-            alt="A $5 Starter Naturally Grows Into a $20+ Round"
-            className="w-full h-auto rounded-sm"
-          />
-        </div>
-
         {/* Value Props */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {valueProps.map(vp => (
