@@ -36,49 +36,12 @@ export default function CompetitiveSection() {
           </p>
         </div>
 
-        {/* Comparison Table only — stat cards removed (duplicated in TechnologySection) */}
-        <div className="card-dark rounded-sm overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-gold/20">
-                  <th className="text-left py-4 px-5 text-white/40 text-xs tracking-wider uppercase font-normal w-40">Feature</th>
-                  <th className="py-4 px-4 text-center">
-                    <div className="text-gold font-bebas text-lg tracking-wider">Rapid Fire</div>
-                    <div className="text-gold/60 text-[10px] tracking-wider">TEXAS HOLD'EM</div>
-                  </th>
-                  <th className="py-4 px-4 text-center">
-                    <div className="text-white/70 font-semibold text-sm">Interblock</div>
-                    <div className="text-white/30 text-[10px]">Poker ETG</div>
-                  </th>
-                  <th className="py-4 px-4 text-center">
-                    <div className="text-white/70 font-semibold text-sm">Light & Wonder</div>
-                    <div className="text-white/30 text-[10px]">Ovation ETG</div>
-                  </th>
-                  <th className="py-4 px-4 text-center">
-                    <div className="text-white/70 font-semibold text-sm">Live Poker</div>
-                    <div className="text-white/30 text-[10px]">Table</div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map((row, i) => (
-                  <tr key={row.label} className={`border-b border-gold/10 ${i % 2 === 0 ? 'bg-white/[0.02]' : ''}`}>
-                    <td className="py-3.5 px-5 text-white/50 text-xs font-medium">{row.label}</td>
-                    <td className="py-3.5 px-4 text-center bg-gold/5 border-l border-r border-gold/20">
-                      <Cell val={row.rf} isRf={true} />
-                    </td>
-                    <td className="py-3.5 px-4 text-center"><Cell val={row.ib} /></td>
-                    <td className="py-3.5 px-4 text-center"><Cell val={row.lw} /></td>
-                    <td className="py-3.5 px-4 text-center"><Cell val={row.lp} /></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <div className="p-4 border-t border-gold/10 text-white/30 text-[10px] leading-relaxed">
-            Source: Interblock product guide, Light & Wonder Ovation ETG / 2025 datasheet, and operator performance reviews.
-          </div>
+        <div className="w-full">
+          <img
+            src="https://media.base44.com/images/public/6a18db090bc2bcd630da3665/f0238ef08_ChatGPTImageMay30202601_00_48AM.png"
+            alt="Rapid Fire Texas Hold'em Competitive Comparison"
+            className="w-full h-auto rounded-sm"
+          />
         </div>
 
       </div>
