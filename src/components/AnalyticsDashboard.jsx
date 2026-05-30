@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { X, TrendingUp, Eye, MousePointerClick, Clock, Monitor, Send, BarChart2, Download, FileText } from 'lucide-react';
+import { X, TrendingUp, Eye, MousePointerClick, Clock, Monitor, Send, BarChart2, Download, FileText, Trash2 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { jsPDF } from 'jspdf';
 
@@ -17,6 +17,7 @@ export default function AnalyticsDashboard({ onClose }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [timeframe, setTimeframe] = useState('1h');
+  const [clearing, setClearing] = useState(false);
 
   const TIMEFRAMES = [
     { value: '1h',   label: 'Hour' },
@@ -81,6 +82,19 @@ export default function AnalyticsDashboard({ onClose }) {
   });
 
   const uniqueSessions = new Set(events.map(e => e.session_id).filter(Boolean)).size;
+
+  // --- Clear all analytics data ---
+  async function clearAllData() {
+    if (!window.confirm('Delete ALL analytics data permanently? This cannot be undone.')) return;
+    setClearing(true);
+    // Fetch all (not just filtered view) then delete each
+    const all = await base44.entities.AnalyticsEvent.list('-occurred_at', 5000);
+    for (const ev of (all || [])) {
+      await base44.entities.AnalyticsEvent.delete(ev.id);
+    }
+    setEvents([]);
+    setClearing(false);
+  }
 
   // --- Build report text for export ---
   function buildReportText() {
@@ -212,6 +226,10 @@ export default function AnalyticsDashboard({ onClose }) {
             <button onClick={exportWord} title="Download Word"
               style={{ background: 'rgba(201,168,76,0.1)', border: '1px solid rgba(201,168,76,0.4)', color: GOLD, padding: '0.3rem 0.65rem', cursor: 'pointer', fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '0.3rem', borderRadius: 2 }}>
               <FileText size={11} /> Word
+            </button>
+            <button onClick={clearAllData} disabled={clearing} title="Clear all analytics data"
+              style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.4)', color: '#f87171', padding: '0.3rem 0.65rem', cursor: clearing ? 'not-allowed' : 'pointer', fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '0.3rem', borderRadius: 2, opacity: clearing ? 0.6 : 1 }}>
+              <Trash2 size={11} /> {clearing ? 'Clearing…' : 'Clear'}
             </button>
             <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.4)', padding: '0.25rem', marginLeft: '0.25rem' }}>
               <X size={18} />
