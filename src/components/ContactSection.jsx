@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 const EMAILJS_SERVICE_ID  = 'service_xt83ycl';
 const EMAILJS_TEMPLATE_ID = 'template_0n87fkn';
@@ -14,30 +15,8 @@ const inputStyle = {
   outline: 'none',
   borderRadius: 0,
   fontFamily: 'inherit',
+  boxSizing: 'border-box',
 };
-
-const inputFocus = { borderColor: '#F5D78E', color: '#ffffff' };
-const inputBlur  = { borderColor: '#C9A84C', color: '#C9A84C' };
-
-// Dynamically load EmailJS from CDN so no package.json change needed
-function sendViaEmailJS(templateParams) {
-  return new Promise((resolve, reject) => {
-    const send = () => {
-      window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY)
-        .then(resolve)
-        .catch(reject);
-    };
-    if (window.emailjs) {
-      send();
-    } else {
-      const script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-      script.onload = () => { window.emailjs.init(EMAILJS_PUBLIC_KEY); send(); };
-      script.onerror = () => reject(new Error('Failed to load EmailJS'));
-      document.head.appendChild(script);
-    }
-  });
-}
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -57,18 +36,23 @@ export default function ContactSection() {
     setError('');
 
     try {
-      await sendViaEmailJS({
-        name:     formData.name,
-        company:  formData.company,
-        role:     formData.role || 'Not provided',
-        email:    formData.email,
-        interest: formData.interest || 'Not specified',
-        message:  formData.message,
-      });
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          name:     formData.name,
+          company:  formData.company,
+          role:     formData.role || 'Not provided',
+          email:    formData.email,
+          interest: formData.interest || 'Not specified',
+          message:  formData.message,
+        },
+        EMAILJS_PUBLIC_KEY
+      );
       setSubmitted(true);
     } catch (err) {
       console.error('EmailJS error:', err);
-      setError('Something went wrong sending your message. Please email us directly at kellarm@xfhgamestudioltd.com');
+      setError('Something went wrong. Please email us directly at kellarm@xfhgamestudioltd.com or call 780-504-4899.');
     } finally {
       setSubmitting(false);
     }
@@ -81,88 +65,79 @@ export default function ContactSection() {
         {/* Header */}
         <div className="text-center mb-14">
           <div className="flex items-center justify-center gap-4 mb-4">
-            <div className="h-px w-12 bg-gold/60" />
-            <span className="section-label">Get in Touch</span>
-            <div className="h-px w-12 bg-gold/60" />
+            <div style={{ height: '1px', width: '3rem', backgroundColor: 'rgba(201,168,76,0.6)' }} />
+            <span style={{ color: '#C9A84C', fontSize: '0.7rem', letterSpacing: '0.25em', textTransform: 'uppercase', fontWeight: 600 }}>Get in Touch</span>
+            <div style={{ height: '1px', width: '3rem', backgroundColor: 'rgba(201,168,76,0.6)' }} />
           </div>
-          <h2 className="font-playfair text-4xl md:text-5xl text-white font-bold mb-4">
-            Ready to <span className="text-gold">Discuss?</span>
+          <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(2rem, 5vw, 3rem)', color: '#ffffff', fontWeight: 700, marginBottom: '1rem' }}>
+            Ready to <span style={{ color: '#C9A84C' }}>Discuss?</span>
           </h2>
-          <p className="text-white/50 text-lg max-w-xl mx-auto font-light">
+          <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '1rem', maxWidth: '36rem', margin: '0 auto', fontWeight: 300, lineHeight: 1.7 }}>
             Whether you're an operator, manufacturer, iGaming platform, or investor — we want to hear from you. Submit your details and we'll respond within 2 business days.
           </p>
         </div>
 
         {submitted ? (
-          <div style={{ border: '1px solid rgba(201,168,76,0.4)', backgroundColor: '#000' }} className="rounded-sm p-12 text-center">
-            <div className="text-gold text-5xl mb-4">✓</div>
-            <h3 className="font-playfair text-2xl text-white font-bold mb-3">Message Received</h3>
-            <p className="text-white/50 text-sm max-w-md mx-auto">
+          <div style={{ border: '1px solid rgba(201,168,76,0.4)', backgroundColor: '#000', padding: '4rem', textAlign: 'center' }}>
+            <div style={{ color: '#C9A84C', fontSize: '3rem', marginBottom: '1rem' }}>✓</div>
+            <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.5rem', color: '#ffffff', fontWeight: 700, marginBottom: '0.75rem' }}>Message Received</h3>
+            <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.875rem', maxWidth: '28rem', margin: '0 auto' }}>
               Thank you for your interest in Rapid Fire Texas Hold'em. A member of the XFH Game Studio team will be in touch within 2 business days.
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} style={{ backgroundColor: '#000000', border: '1px solid #C9A84C' }} className="rounded-sm p-8">
+          <form onSubmit={handleSubmit} style={{ backgroundColor: '#000000', border: '1px solid #C9A84C', padding: '2rem' }}>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem', marginBottom: '1.25rem' }}>
 
-              {/* Name */}
               <div>
-                <label className="block text-gold text-xs tracking-widest uppercase mb-2">Full Name *</label>
+                <label style={{ display: 'block', color: '#C9A84C', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Full Name *</label>
                 <input
                   type="text" name="name" required value={formData.name} onChange={handleChange}
-                  placeholder="Jane Smith"
-                  style={inputStyle}
-                  onFocus={e => Object.assign(e.target.style, inputFocus)}
-                  onBlur={e => Object.assign(e.target.style, inputBlur)}
+                  placeholder="Jane Smith" style={inputStyle}
+                  onFocus={e => { e.target.style.borderColor = '#F5D78E'; e.target.style.color = '#ffffff'; }}
+                  onBlur={e => { e.target.style.borderColor = '#C9A84C'; e.target.style.color = '#C9A84C'; }}
                 />
               </div>
 
-              {/* Company */}
               <div>
-                <label className="block text-gold text-xs tracking-widest uppercase mb-2">Company / Organization *</label>
+                <label style={{ display: 'block', color: '#C9A84C', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Company / Organization *</label>
                 <input
                   type="text" name="company" required value={formData.company} onChange={handleChange}
-                  placeholder="Acme Gaming Inc."
-                  style={inputStyle}
-                  onFocus={e => Object.assign(e.target.style, inputFocus)}
-                  onBlur={e => Object.assign(e.target.style, inputBlur)}
+                  placeholder="Acme Gaming Inc." style={inputStyle}
+                  onFocus={e => { e.target.style.borderColor = '#F5D78E'; e.target.style.color = '#ffffff'; }}
+                  onBlur={e => { e.target.style.borderColor = '#C9A84C'; e.target.style.color = '#C9A84C'; }}
                 />
               </div>
 
-              {/* Role */}
               <div>
-                <label className="block text-gold text-xs tracking-widest uppercase mb-2">Your Role</label>
+                <label style={{ display: 'block', color: '#C9A84C', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Your Role</label>
                 <input
                   type="text" name="role" value={formData.role} onChange={handleChange}
-                  placeholder="VP Gaming Operations"
-                  style={inputStyle}
-                  onFocus={e => Object.assign(e.target.style, inputFocus)}
-                  onBlur={e => Object.assign(e.target.style, inputBlur)}
+                  placeholder="VP Gaming Operations" style={inputStyle}
+                  onFocus={e => { e.target.style.borderColor = '#F5D78E'; e.target.style.color = '#ffffff'; }}
+                  onBlur={e => { e.target.style.borderColor = '#C9A84C'; e.target.style.color = '#C9A84C'; }}
                 />
               </div>
 
-              {/* Email */}
               <div>
-                <label className="block text-gold text-xs tracking-widest uppercase mb-2">Business Email *</label>
+                <label style={{ display: 'block', color: '#C9A84C', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Business Email *</label>
                 <input
                   type="email" name="email" required value={formData.email} onChange={handleChange}
-                  placeholder="jane@company.com"
-                  style={inputStyle}
-                  onFocus={e => Object.assign(e.target.style, inputFocus)}
-                  onBlur={e => Object.assign(e.target.style, inputBlur)}
+                  placeholder="jane@company.com" style={inputStyle}
+                  onFocus={e => { e.target.style.borderColor = '#F5D78E'; e.target.style.color = '#ffffff'; }}
+                  onBlur={e => { e.target.style.borderColor = '#C9A84C'; e.target.style.color = '#C9A84C'; }}
                 />
               </div>
             </div>
 
-            {/* Interest */}
-            <div className="mb-5">
-              <label className="block text-gold text-xs tracking-widest uppercase mb-2">Area of Interest</label>
+            <div style={{ marginBottom: '1.25rem' }}>
+              <label style={{ display: 'block', color: '#C9A84C', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Area of Interest</label>
               <select
                 name="interest" value={formData.interest} onChange={handleChange}
                 style={{ ...inputStyle, color: formData.interest ? '#C9A84C' : 'rgba(201,168,76,0.4)' }}
-                onFocus={e => Object.assign(e.target.style, inputFocus)}
-                onBlur={e => Object.assign(e.target.style, inputBlur)}
+                onFocus={e => { e.target.style.borderColor = '#F5D78E'; e.target.style.color = '#ffffff'; }}
+                onBlur={e => { e.target.style.borderColor = '#C9A84C'; e.target.style.color = formData.interest ? '#C9A84C' : 'rgba(201,168,76,0.4)'; }}
               >
                 <option value="">Select one...</option>
                 <option value="Engine Licensing">Engine Licensing</option>
@@ -175,28 +150,25 @@ export default function ContactSection() {
               </select>
             </div>
 
-            {/* Message */}
-            <div className="mb-8">
-              <label className="block text-gold text-xs tracking-widest uppercase mb-2">Message *</label>
+            <div style={{ marginBottom: '2rem' }}>
+              <label style={{ display: 'block', color: '#C9A84C', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Message *</label>
               <textarea
                 name="message" required rows={5} value={formData.message} onChange={handleChange}
                 placeholder="Tell us about your organization and what you're looking for..."
                 style={{ ...inputStyle, resize: 'vertical' }}
-                onFocus={e => Object.assign(e.target.style, { ...inputFocus, resize: 'vertical' })}
-                onBlur={e => Object.assign(e.target.style, { ...inputBlur, resize: 'vertical' })}
+                onFocus={e => { e.target.style.borderColor = '#F5D78E'; e.target.style.color = '#ffffff'; }}
+                onBlur={e => { e.target.style.borderColor = '#C9A84C'; e.target.style.color = '#C9A84C'; }}
               />
             </div>
 
-            {/* Error message */}
             {error && (
-              <div className="mb-5 p-4 border border-red-500/40 bg-red-500/10 text-red-400 text-sm rounded-sm">
+              <div style={{ marginBottom: '1.25rem', padding: '1rem', border: '1px solid rgba(239,68,68,0.4)', backgroundColor: 'rgba(239,68,68,0.1)', color: '#f87171', fontSize: '0.875rem' }}>
                 {error}
               </div>
             )}
 
-            {/* Footer row */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <p className="text-gold/30 text-xs">
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
+              <p style={{ color: 'rgba(201,168,76,0.3)', fontSize: '0.7rem' }}>
                 Patent Pending — Application No. 3311959. All inquiries kept strictly confidential.
               </p>
               <button
@@ -207,7 +179,7 @@ export default function ContactSection() {
                   color: '#C9A84C',
                   border: '1px solid #C9A84C',
                   padding: '0.875rem 2.5rem',
-                  fontSize: '0.75rem',
+                  fontSize: '0.7rem',
                   fontWeight: 700,
                   letterSpacing: '0.2em',
                   textTransform: 'uppercase',
@@ -216,16 +188,8 @@ export default function ContactSection() {
                   transition: 'all 0.3s',
                   whiteSpace: 'nowrap',
                 }}
-                onMouseEnter={e => {
-                  if (!submitting) {
-                    e.target.style.backgroundColor = '#C9A84C';
-                    e.target.style.color = '#000000';
-                  }
-                }}
-                onMouseLeave={e => {
-                  e.target.style.backgroundColor = '#000000';
-                  e.target.style.color = '#C9A84C';
-                }}
+                onMouseEnter={e => { if (!submitting) { e.target.style.backgroundColor = '#C9A84C'; e.target.style.color = '#000000'; } }}
+                onMouseLeave={e => { e.target.style.backgroundColor = '#000000'; e.target.style.color = '#C9A84C'; }}
               >
                 {submitting ? 'Sending...' : 'Send Inquiry'}
               </button>
@@ -233,6 +197,16 @@ export default function ContactSection() {
 
           </form>
         )}
+
+        {/* Direct contact fallback */}
+        <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+          <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.75rem' }}>
+            Prefer direct contact? &nbsp;
+            <a href="mailto:kellarm@xfhgamestudioltd.com" style={{ color: 'rgba(201,168,76,0.5)', textDecoration: 'none' }}>kellarm@xfhgamestudioltd.com</a>
+            &nbsp;·&nbsp;
+            <a href="tel:+17805044899" style={{ color: 'rgba(201,168,76,0.5)', textDecoration: 'none' }}>780-504-4899</a>
+          </p>
+        </div>
 
       </div>
     </section>
