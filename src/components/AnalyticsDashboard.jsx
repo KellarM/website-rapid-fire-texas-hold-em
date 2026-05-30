@@ -16,12 +16,37 @@ export default function AnalyticsDashboard({ onClose }) {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [timeframe, setTimeframe] = useState('1h');
+
+  const TIMEFRAMES = [
+    { value: '1h',   label: 'Hour' },
+    { value: '4h',   label: '4 Hours' },
+    { value: '8h',   label: '8 Hours' },
+    { value: '24h',  label: '24 Hours' },
+    { value: '7d',   label: '7 Days' },
+    { value: '30d',  label: 'Month' },
+    { value: 'all',  label: 'All Time' },
+  ];
+
+  function getStartTime(tf) {
+    if (tf === 'all') return null;
+    const now = Date.now();
+    const map = { '1h': 1, '4h': 4, '8h': 8, '24h': 24, '7d': 168, '30d': 720 };
+    return new Date(now - map[tf] * 60 * 60 * 1000).toISOString();
+  }
 
   useEffect(() => {
-    base44.entities.AnalyticsEvent.list('-occurred_at', 1000)
-      .then(data => { setEvents(data || []); setLoading(false); })
-      .catch(e => { setError('Could not load analytics. Are you logged in as admin?'); setLoading(false); });
-  }, []);
+    setLoading(true);
+    setError('');
+    base44.entities.AnalyticsEvent.list('-occurred_at', 2000)
+      .then(data => {
+        const all = data || [];
+        const start = getStartTime(timeframe);
+        setEvents(start ? all.filter(e => e.occurred_at && e.occurred_at >= start) : all);
+        setLoading(false);
+      })
+      .catch(() => { setError('Could not load analytics. Are you logged in as admin?'); setLoading(false); });
+  }, [timeframe]);
 
   // --- Computed stats ---
   const visits = events.filter(e => e.event_name === 'page_visit');
@@ -60,9 +85,11 @@ export default function AnalyticsDashboard({ onClose }) {
   // --- Build report text for export ---
   function buildReportText() {
     const now = new Date().toLocaleString('en-CA', { timeZone: 'America/Edmonton' });
+    const tfLabel = TIMEFRAMES.find(t => t.value === timeframe)?.label || timeframe;
     const lines = [
       'XFH GAME STUDIO — SITE ANALYTICS REPORT',
       `Generated: ${now} (Mountain Time)`,
+      `Timeframe: ${tfLabel}`,
       '',
       '═══════════════════════════════════════',
       'SUMMARY',
@@ -190,6 +217,22 @@ export default function AnalyticsDashboard({ onClose }) {
               <X size={18} />
             </button>
           </div>
+        </div>
+
+        {/* Timeframe Selector */}
+        <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap', marginBottom: '1.25rem' }}>
+          {TIMEFRAMES.map(tf => (
+            <button key={tf.value} onClick={() => setTimeframe(tf.value)}
+              style={{
+                padding: '0.3rem 0.75rem', fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase',
+                cursor: 'pointer', borderRadius: 2, fontWeight: 600, transition: 'all 0.2s',
+                border: `1px solid ${timeframe === tf.value ? GOLD : 'rgba(201,168,76,0.25)'}`,
+                backgroundColor: timeframe === tf.value ? GOLD : 'transparent',
+                color: timeframe === tf.value ? '#000' : 'rgba(201,168,76,0.7)',
+              }}>
+              {tf.label}
+            </button>
+          ))}
         </div>
 
         {error && <div style={{ color: '#f87171', fontSize: '0.8rem', marginBottom: '1rem', padding: '0.75rem', border: '1px solid rgba(248,113,113,0.3)', borderRadius: 2 }}>{error}</div>}
