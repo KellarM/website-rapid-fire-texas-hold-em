@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import emailjs from '@emailjs/browser';
 
 const EMAILJS_SERVICE_ID  = 'service_xt83ycl';
 const EMAILJS_TEMPLATE_ID = 'template_0n87fkn';
@@ -17,6 +16,24 @@ const inputStyle = {
   fontFamily: 'inherit',
   boxSizing: 'border-box',
 };
+
+async function sendEmail(params) {
+  const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      service_id:      EMAILJS_SERVICE_ID,
+      template_id:     EMAILJS_TEMPLATE_ID,
+      user_id:         EMAILJS_PUBLIC_KEY,
+      template_params: params,
+    }),
+  });
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`EmailJS error ${response.status}: ${text}`);
+  }
+  return response;
+}
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -36,23 +53,18 @@ export default function ContactSection() {
     setError('');
 
     try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          name:     formData.name,
-          company:  formData.company,
-          role:     formData.role || 'Not provided',
-          email:    formData.email,
-          interest: formData.interest || 'Not specified',
-          message:  formData.message,
-        },
-        EMAILJS_PUBLIC_KEY
-      );
+      await sendEmail({
+        name:     formData.name,
+        company:  formData.company,
+        role:     formData.role || 'Not provided',
+        email:    formData.email,
+        interest: formData.interest || 'Not specified',
+        message:  formData.message,
+      });
       setSubmitted(true);
     } catch (err) {
-      console.error('EmailJS error:', err);
-      setError('Something went wrong. Please email us directly at kellarm@xfhgamestudioltd.com or call 780-504-4899.');
+      console.error('Send error:', err);
+      setError('Unable to send. Please email kellarm@xfhgamestudioltd.com or call 780-504-4899.');
     } finally {
       setSubmitting(false);
     }
@@ -89,56 +101,45 @@ export default function ContactSection() {
           <form onSubmit={handleSubmit} style={{ backgroundColor: '#000000', border: '1px solid #C9A84C', padding: '2rem' }}>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem', marginBottom: '1.25rem' }}>
-
               <div>
                 <label style={{ display: 'block', color: '#C9A84C', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Full Name *</label>
-                <input
-                  type="text" name="name" required value={formData.name} onChange={handleChange}
+                <input type="text" name="name" required value={formData.name} onChange={handleChange}
                   placeholder="Jane Smith" style={inputStyle}
                   onFocus={e => { e.target.style.borderColor = '#F5D78E'; e.target.style.color = '#ffffff'; }}
-                  onBlur={e => { e.target.style.borderColor = '#C9A84C'; e.target.style.color = '#C9A84C'; }}
-                />
+                  onBlur={e => { e.target.style.borderColor = '#C9A84C'; e.target.style.color = '#C9A84C'; }} />
               </div>
 
               <div>
                 <label style={{ display: 'block', color: '#C9A84C', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Company / Organization *</label>
-                <input
-                  type="text" name="company" required value={formData.company} onChange={handleChange}
+                <input type="text" name="company" required value={formData.company} onChange={handleChange}
                   placeholder="Acme Gaming Inc." style={inputStyle}
                   onFocus={e => { e.target.style.borderColor = '#F5D78E'; e.target.style.color = '#ffffff'; }}
-                  onBlur={e => { e.target.style.borderColor = '#C9A84C'; e.target.style.color = '#C9A84C'; }}
-                />
+                  onBlur={e => { e.target.style.borderColor = '#C9A84C'; e.target.style.color = '#C9A84C'; }} />
               </div>
 
               <div>
                 <label style={{ display: 'block', color: '#C9A84C', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Your Role</label>
-                <input
-                  type="text" name="role" value={formData.role} onChange={handleChange}
+                <input type="text" name="role" value={formData.role} onChange={handleChange}
                   placeholder="VP Gaming Operations" style={inputStyle}
                   onFocus={e => { e.target.style.borderColor = '#F5D78E'; e.target.style.color = '#ffffff'; }}
-                  onBlur={e => { e.target.style.borderColor = '#C9A84C'; e.target.style.color = '#C9A84C'; }}
-                />
+                  onBlur={e => { e.target.style.borderColor = '#C9A84C'; e.target.style.color = '#C9A84C'; }} />
               </div>
 
               <div>
                 <label style={{ display: 'block', color: '#C9A84C', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Business Email *</label>
-                <input
-                  type="email" name="email" required value={formData.email} onChange={handleChange}
+                <input type="email" name="email" required value={formData.email} onChange={handleChange}
                   placeholder="jane@company.com" style={inputStyle}
                   onFocus={e => { e.target.style.borderColor = '#F5D78E'; e.target.style.color = '#ffffff'; }}
-                  onBlur={e => { e.target.style.borderColor = '#C9A84C'; e.target.style.color = '#C9A84C'; }}
-                />
+                  onBlur={e => { e.target.style.borderColor = '#C9A84C'; e.target.style.color = '#C9A84C'; }} />
               </div>
             </div>
 
             <div style={{ marginBottom: '1.25rem' }}>
               <label style={{ display: 'block', color: '#C9A84C', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Area of Interest</label>
-              <select
-                name="interest" value={formData.interest} onChange={handleChange}
+              <select name="interest" value={formData.interest} onChange={handleChange}
                 style={{ ...inputStyle, color: formData.interest ? '#C9A84C' : 'rgba(201,168,76,0.4)' }}
                 onFocus={e => { e.target.style.borderColor = '#F5D78E'; e.target.style.color = '#ffffff'; }}
-                onBlur={e => { e.target.style.borderColor = '#C9A84C'; e.target.style.color = formData.interest ? '#C9A84C' : 'rgba(201,168,76,0.4)'; }}
-              >
+                onBlur={e => { e.target.style.borderColor = '#C9A84C'; e.target.style.color = formData.interest ? '#C9A84C' : 'rgba(201,168,76,0.4)'; }}>
                 <option value="">Select one...</option>
                 <option value="Engine Licensing">Engine Licensing</option>
                 <option value="Manufacturing Partnership">Manufacturing Partnership</option>
@@ -152,13 +153,11 @@ export default function ContactSection() {
 
             <div style={{ marginBottom: '2rem' }}>
               <label style={{ display: 'block', color: '#C9A84C', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Message *</label>
-              <textarea
-                name="message" required rows={5} value={formData.message} onChange={handleChange}
+              <textarea name="message" required rows={5} value={formData.message} onChange={handleChange}
                 placeholder="Tell us about your organization and what you're looking for..."
                 style={{ ...inputStyle, resize: 'vertical' }}
                 onFocus={e => { e.target.style.borderColor = '#F5D78E'; e.target.style.color = '#ffffff'; }}
-                onBlur={e => { e.target.style.borderColor = '#C9A84C'; e.target.style.color = '#C9A84C'; }}
-              />
+                onBlur={e => { e.target.style.borderColor = '#C9A84C'; e.target.style.color = '#C9A84C'; }} />
             </div>
 
             {error && (
@@ -171,26 +170,16 @@ export default function ContactSection() {
               <p style={{ color: 'rgba(201,168,76,0.3)', fontSize: '0.7rem' }}>
                 Patent Pending — Application No. 3311959. All inquiries kept strictly confidential.
               </p>
-              <button
-                type="submit"
-                disabled={submitting}
+              <button type="submit" disabled={submitting}
                 style={{
-                  backgroundColor: '#000000',
-                  color: '#C9A84C',
-                  border: '1px solid #C9A84C',
-                  padding: '0.875rem 2.5rem',
-                  fontSize: '0.7rem',
-                  fontWeight: 700,
-                  letterSpacing: '0.2em',
-                  textTransform: 'uppercase',
+                  backgroundColor: '#000000', color: '#C9A84C', border: '1px solid #C9A84C',
+                  padding: '0.875rem 2.5rem', fontSize: '0.7rem', fontWeight: 700,
+                  letterSpacing: '0.2em', textTransform: 'uppercase',
                   cursor: submitting ? 'not-allowed' : 'pointer',
-                  opacity: submitting ? 0.6 : 1,
-                  transition: 'all 0.3s',
-                  whiteSpace: 'nowrap',
+                  opacity: submitting ? 0.6 : 1, transition: 'all 0.3s', whiteSpace: 'nowrap',
                 }}
                 onMouseEnter={e => { if (!submitting) { e.target.style.backgroundColor = '#C9A84C'; e.target.style.color = '#000000'; } }}
-                onMouseLeave={e => { e.target.style.backgroundColor = '#000000'; e.target.style.color = '#C9A84C'; }}
-              >
+                onMouseLeave={e => { e.target.style.backgroundColor = '#000000'; e.target.style.color = '#C9A84C'; }}>
                 {submitting ? 'Sending...' : 'Send Inquiry'}
               </button>
             </div>
@@ -198,7 +187,6 @@ export default function ContactSection() {
           </form>
         )}
 
-        {/* Direct contact fallback */}
         <div style={{ marginTop: '2rem', textAlign: 'center' }}>
           <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.75rem' }}>
             Prefer direct contact? &nbsp;
