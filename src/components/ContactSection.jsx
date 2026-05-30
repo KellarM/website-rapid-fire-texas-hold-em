@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const EMAILJS_SERVICE_ID  = 'service_v3ogpkd';
+const EMAILJS_SERVICE_ID  = 'service_xt83ycl';
 const EMAILJS_TEMPLATE_ID = 'template_0n87fkn';
 const EMAILJS_PUBLIC_KEY  = 're_euEgsnYT_gPyeDzshy6NYEscRcJsPi6aX';
 
