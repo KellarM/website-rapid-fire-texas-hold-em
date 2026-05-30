@@ -28,11 +28,11 @@ async function sendEmail(params) {
       template_params: params,
     }),
   });
+  const text = await response.text();
   if (!response.ok) {
-    const text = await response.text();
-    throw new Error(`EmailJS error ${response.status}: ${text}`);
+    throw new Error(`[${response.status}] ${text}`);
   }
-  return response;
+  return text;
 }
 
 export default function ContactSection() {
@@ -63,8 +63,8 @@ export default function ContactSection() {
       });
       setSubmitted(true);
     } catch (err) {
-      console.error('Send error:', err);
-      setError('Unable to send. Please email kellarm@xfhgamestudioltd.com or call 780-504-4899.');
+      console.error('EmailJS send error:', err.message);
+      setError(`Unable to send your message (${err.message}). Please email kellarm@xfhgamestudioltd.com directly.`);
     } finally {
       setSubmitting(false);
     }
@@ -187,12 +187,13 @@ export default function ContactSection() {
           </form>
         )}
 
+        {/* Email only — no phone number */}
         <div style={{ marginTop: '2rem', textAlign: 'center' }}>
           <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.75rem' }}>
             Prefer direct contact? &nbsp;
-            <a href="mailto:kellarm@xfhgamestudioltd.com" style={{ color: 'rgba(201,168,76,0.5)', textDecoration: 'none' }}>kellarm@xfhgamestudioltd.com</a>
-            &nbsp;·&nbsp;
-            <a href="tel:+17805044899" style={{ color: 'rgba(201,168,76,0.5)', textDecoration: 'none' }}>780-504-4899</a>
+            <a href="mailto:kellarm@xfhgamestudioltd.com" style={{ color: 'rgba(201,168,76,0.5)', textDecoration: 'none' }}>
+              kellarm@xfhgamestudioltd.com
+            </a>
           </p>
         </div>
 
