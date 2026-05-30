@@ -1,0 +1,73 @@
+{
+  "name": "AnalyticsEvent",
+  "type": "object",
+  "properties": {
+    "event_name": {
+      "type": "string",
+      "description": "Name of the tracked event"
+    },
+    "section": {
+      "type": "string",
+      "description": "Section of the page (for section_viewed events)"
+    },
+    "label": {
+      "type": "string",
+      "description": "Label or identifier for click events"
+    },
+    "href": {
+      "type": "string",
+      "description": "Link href for nav/cta click events"
+    },
+    "device": {
+      "type": "string",
+      "enum": [
+        "desktop",
+        "mobile",
+        "tablet"
+      ],
+      "description": "Device type of the visitor"
+    },
+    "screen_width": {
+      "type": "number",
+      "description": "Screen width in pixels"
+    },
+    "referrer": {
+      "type": "string",
+      "description": "Referrer URL or direct"
+    },
+    "seconds": {
+      "type": "number",
+      "description": "Time spent on page in seconds"
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Random session identifier to group events from same visit"
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the event occurred"
+    }
+  },
+  "required": [
+    "event_name"
+  ],
+  "rls": {
+    "create": {},
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

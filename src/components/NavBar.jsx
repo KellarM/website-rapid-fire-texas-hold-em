@@ -88,7 +88,7 @@ export default function NavBar() {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={() => trackEvent('nav_link_clicked', { href: link.href, label: link.label })}
+                onClick={() => trackEvent('nav_link_clicked', { href: link.href, label: link.label, section: link.href.replace('#','') })}
                 className="text-[11px] font-semibold tracking-[0.2em] uppercase text-white/70 hover:text-gold transition-colors duration-200"
               >
                 {link.label}

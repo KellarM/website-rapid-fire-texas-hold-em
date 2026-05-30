@@ -1,31 +1,60 @@
 import { useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 
-// Track a single event
+// Generate or reuse a session ID for this browser tab
+function getSessionId() {
+  let id = sessionStorage.getItem('xfh_session_id');
+  if (!id) {
+    id = Math.random().toString(36).slice(2) + Date.now().toString(36);
+    sessionStorage.setItem('xfh_session_id', id);
+  }
+  return id;
+}
+
+function getDevice() {
+  const ua = navigator.userAgent;
+  if (/Mobi|Android/i.test(ua)) return 'mobile';
+  if (/Tablet|iPad/i.test(ua)) return 'tablet';
+  return 'desktop';
+}
+
+// Save event to AnalyticsEvent entity (works on all devices, live + preview)
 export function trackEvent(eventName, properties = {}) {
-  base44.analytics.track({ eventName, properties });
+  const payload = {
+    event_name: eventName,
+    session_id: getSessionId(),
+    occurred_at: new Date().toISOString(),
+    device: getDevice(),
+    screen_width: window.innerWidth,
+    ...properties,
+  };
+  // Fire and forget — don't block anything
+  base44.entities.AnalyticsEvent.create(payload).catch(() => {});
 }
 
 // Hook: attach all passive tracking on mount
 export function useAnalyticsTracker() {
   useEffect(() => {
-    // Track page visit
+    // Page visit
     trackEvent('page_visit', {
       referrer: document.referrer || 'direct',
-      device: /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop',
-      screen_width: window.innerWidth,
-      timestamp: new Date().toISOString(),
     });
 
-    // Track time on page
+    // Time on page — use visibilitychange for mobile (beforeunload unreliable on mobile)
     const startTime = Date.now();
-    const handleUnload = () => {
+    const handleExit = () => {
+      if (document.visibilityState === 'hidden') {
+        const seconds = Math.round((Date.now() - startTime) / 1000);
+        trackEvent('time_on_page', { seconds });
+      }
+    };
+    document.addEventListener('visibilitychange', handleExit);
+    window.addEventListener('beforeunload', () => {
       const seconds = Math.round((Date.now() - startTime) / 1000);
       trackEvent('time_on_page', { seconds });
-    };
-    window.addEventListener('beforeunload', handleUnload);
+    });
 
-    // Track section views via IntersectionObserver
+    // Section views via IntersectionObserver
     const sectionIds = ['overview', 'cascade', 'technology', 'competitive', 'contact', 'gallery'];
     const observers = [];
     sectionIds.forEach(id => {
@@ -36,21 +65,13 @@ export function useAnalyticsTracker() {
           trackEvent('section_viewed', { section: id });
           obs.disconnect();
         }
-      }, { threshold: 0.3 });
+      }, { threshold: 0.25 });
       obs.observe(el);
       observers.push(obs);
     });
 
-    // Track nav link clicks
-    const handleNavClick = (e) => {
-      const link = e.target.closest('a[href^="#"]');
-      if (link) trackEvent('nav_link_clicked', { href: link.getAttribute('href'), label: link.innerText.trim() });
-    };
-    document.addEventListener('click', handleNavClick);
-
     return () => {
-      window.removeEventListener('beforeunload', handleUnload);
-      document.removeEventListener('click', handleNavClick);
+      document.removeEventListener('visibilitychange', handleExit);
       observers.forEach(o => o.disconnect());
     };
   }, []);
