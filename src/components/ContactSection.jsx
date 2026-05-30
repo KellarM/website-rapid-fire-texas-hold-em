@@ -1,5 +1,9 @@
 import { useState } from 'react';
 
+const EMAILJS_SERVICE_ID  = 'service_v3ogpkd';
+const EMAILJS_TEMPLATE_ID = 'template_0n87fkn';
+const EMAILJS_PUBLIC_KEY  = 're_euEgsnYT_gPyeDzshy6NYEscRcJsPi6aX';
+
 const inputStyle = {
   backgroundColor: '#000000',
   border: '1px solid #C9A84C',
@@ -15,12 +19,33 @@ const inputStyle = {
 const inputFocus = { borderColor: '#F5D78E', color: '#ffffff' };
 const inputBlur  = { borderColor: '#C9A84C', color: '#C9A84C' };
 
+// Dynamically load EmailJS from CDN so no package.json change needed
+function sendViaEmailJS(templateParams) {
+  return new Promise((resolve, reject) => {
+    const send = () => {
+      window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY)
+        .then(resolve)
+        .catch(reject);
+    };
+    if (window.emailjs) {
+      send();
+    } else {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+      script.onload = () => { window.emailjs.init(EMAILJS_PUBLIC_KEY); send(); };
+      script.onerror = () => reject(new Error('Failed to load EmailJS'));
+      document.head.appendChild(script);
+    }
+  });
+}
+
 export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: '', company: '', role: '', email: '', interest: '', message: '',
   });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -29,15 +54,24 @@ export default function ContactSection() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
+    setError('');
+
     try {
-      await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+      await sendViaEmailJS({
+        name:     formData.name,
+        company:  formData.company,
+        role:     formData.role || 'Not provided',
+        email:    formData.email,
+        interest: formData.interest || 'Not specified',
+        message:  formData.message,
       });
-    } catch (_) {}
-    setSubmitting(false);
-    setSubmitted(true);
+      setSubmitted(true);
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setError('Something went wrong sending your message. Please email us directly at kellarm@xfhgamestudioltd.com');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -69,6 +103,7 @@ export default function ContactSection() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} style={{ backgroundColor: '#000000', border: '1px solid #C9A84C' }} className="rounded-sm p-8">
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
 
               {/* Name */}
@@ -130,13 +165,13 @@ export default function ContactSection() {
                 onBlur={e => Object.assign(e.target.style, inputBlur)}
               >
                 <option value="">Select one...</option>
-                <option value="licensing">Engine Licensing</option>
-                <option value="manufacturing">Manufacturing Partnership</option>
-                <option value="igaming">iGaming / RGS Platform</option>
-                <option value="stadium">Stadium Gaming Configuration</option>
-                <option value="investment">Investment / Funding</option>
-                <option value="regulatory">Regulatory / Certification</option>
-                <option value="other">Other</option>
+                <option value="Engine Licensing">Engine Licensing</option>
+                <option value="Manufacturing Partnership">Manufacturing Partnership</option>
+                <option value="iGaming / RGS Platform">iGaming / RGS Platform</option>
+                <option value="Stadium Gaming Configuration">Stadium Gaming Configuration</option>
+                <option value="Investment / Funding">Investment / Funding</option>
+                <option value="Regulatory / Certification">Regulatory / Certification</option>
+                <option value="Other">Other</option>
               </select>
             </div>
 
@@ -151,6 +186,13 @@ export default function ContactSection() {
                 onBlur={e => Object.assign(e.target.style, { ...inputBlur, resize: 'vertical' })}
               />
             </div>
+
+            {/* Error message */}
+            {error && (
+              <div className="mb-5 p-4 border border-red-500/40 bg-red-500/10 text-red-400 text-sm rounded-sm">
+                {error}
+              </div>
+            )}
 
             {/* Footer row */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
