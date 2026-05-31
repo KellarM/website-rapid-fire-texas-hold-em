@@ -37,14 +37,14 @@ export default function MarketSection() {
               </div>
             </div>
             <div className="flex items-center gap-3 p-3 bg-gold/10 border border-gold/20 rounded-sm">
-              <div className="font-bebas text-3xl text-gold">7.5%</div>
+              <div className="font-bebas text-3xl text-gold">9.1%</div>
               <div>
                 <div className="text-white text-sm font-semibold">Compound Annual Growth Rate</div>
-                <div className="text-white/40 text-xs">2026–2034 · Source: Dataintelo / Mar 2026</div>
+                <div className="text-white/40 text-xs">2025–2030 · Source: Dataintelo / 2026</div>
               </div>
             </div>
             <div className="mt-3 text-white/30 text-xs leading-relaxed">
-              Fully Automated segment fastest-growing at 8.9% CAGR. 14,200+ new EGM units installed globally in 2025.
+              Fully Automated segment fastest-growing sub-category. 14,200+ new EGM units installed globally in 2025.
             </div>
           </div>
 
