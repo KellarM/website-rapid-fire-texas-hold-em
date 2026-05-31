@@ -9,7 +9,7 @@ const features = [
   {
     icon: '📊',
     title: 'Mathematical Rigor',
-    desc: 'Every one of 78 bet positions is certified to 2,000,000 confirmed wins — requiring up to 44 million rounds per position for rare hand ranks. Monte Carlo validation ensures repeatable, auditable performance.',
+    desc: 'All 78 bet positions validated through internal simulation to GLI-11 standard — requiring up to 44 million rounds per position for rare hand ranks. Third-party submission in preparation. Repeatable, auditable performance.',
   },
   {
     icon: '🔺',
