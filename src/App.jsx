@@ -6,11 +6,13 @@ import PageNotFound from './lib/PageNotFound';
 import { AuthProvider } from '@/lib/AuthContext';
 // Add page imports here
 import Home from './pages/Home';
+import LinkedInAnnounce from './pages/LinkedInAnnounce';
 
 const AuthenticatedApp = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/linkedin" element={<LinkedInAnnounce />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
