@@ -88,11 +88,14 @@ export default function AnalyticsDashboard({ onClose }) {
   async function clearAllData() {
     if (!window.confirm('Delete ALL analytics data permanently? This cannot be undone.')) return;
     setClearing(true);
-    // Fetch all (not just filtered view) then delete each
-    const all = await base44.entities.AnalyticsEvent.list('-occurred_at', 5000);
-    for (const ev of (all || [])) {
-      await base44.entities.AnalyticsEvent.delete(ev.id);
-    }
+    await base44.entities.AnalyticsEvent.filter({}, '-occurred_at', 5000).then(async (all) => {
+      const ids = (all || []).map(e => e.id);
+      for (let i = 0; i < ids.length; i += 50) {
+        const batch = ids.slice(i, i + 50);
+        await Promise.all(batch.map(id => base44.entities.AnalyticsEvent.delete(id)));
+        if (i + 50 < ids.length) await new Promise(r => setTimeout(r, 500));
+      }
+    });
     setEvents([]);
     setClearing(false);
   }
