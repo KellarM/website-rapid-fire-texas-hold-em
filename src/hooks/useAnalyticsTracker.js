@@ -66,18 +66,54 @@ export function useAnalyticsTracker() {
     document.addEventListener('visibilitychange', handleVisibility);
     window.addEventListener('beforeunload', trackExit);
 
-    // Section views via IntersectionObserver — fire ONCE per section per session
+    // Section navigation tracking — fires on every section entry with direction & sequence
     const sectionIds = ['overview', 'cascade', 'technology', 'competitive', 'contact', 'gallery'];
+    let currentSection = null;
+    let sectionEntryTime = null;
+    let navSequence = 0;
+    const viewedSections = new Set();
     const observers = [];
+
     sectionIds.forEach(id => {
       const el = document.getElementById(id);
       if (!el) return;
+
       const obs = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
-          trackEvent('section_viewed', { section: id });
-          obs.disconnect();
+          const prevSection = currentSection;
+          const now = Date.now();
+
+          // Fire once-per-session section_viewed (existing behaviour)
+          if (!viewedSections.has(id)) {
+            viewedSections.add(id);
+            trackEvent('section_viewed', { section: id });
+          }
+
+          // Always fire section_navigated to capture every visit with context
+          navSequence += 1;
+          const timeInPrev = prevSection && sectionEntryTime
+            ? Math.round((now - sectionEntryTime) / 1000)
+            : null;
+
+          const prevIdx = prevSection ? sectionIds.indexOf(prevSection) : -1;
+          const currIdx = sectionIds.indexOf(id);
+          const direction = prevSection
+            ? (currIdx > prevIdx ? 'down' : 'up')
+            : 'enter';
+
+          trackEvent('section_navigated', {
+            section: id,
+            from_section: prevSection || 'none',
+            direction,
+            nav_step: navSequence,
+            seconds_in_prev: timeInPrev,
+          });
+
+          currentSection = id;
+          sectionEntryTime = now;
         }
-      }, { threshold: 0.25 });
+      }, { threshold: 0.4 });
+
       obs.observe(el);
       observers.push(obs);
     });

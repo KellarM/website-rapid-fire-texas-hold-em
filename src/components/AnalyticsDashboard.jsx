@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { X, TrendingUp, Eye, MousePointerClick, Clock, Monitor, Send, BarChart2, Download, FileText, Trash2 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { jsPDF } from 'jspdf';
+import SectionNavFlow from './SectionNavFlow';
 
 const GOLD = '#C9A84C';
 const SECTION_LABELS = { overview: 'Overview', cascade: 'The Cascade', technology: 'Technology', competitive: 'Competitive', contact: 'Contact', gallery: 'Gallery' };
@@ -318,7 +319,7 @@ export default function AnalyticsDashboard({ onClose }) {
         </div>
 
         {/* Nav Clicks */}
-        <div style={{ background: '#111', border: '1px solid rgba(201,168,76,0.2)', padding: '1rem', borderRadius: 2 }}>
+        <div style={{ background: '#111', border: '1px solid rgba(201,168,76,0.2)', padding: '1rem', borderRadius: 2, marginBottom: '0.75rem' }}>
           <div style={{ fontSize: '0.6rem', color: GOLD, letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 600, marginBottom: '0.75rem' }}>Navigation Clicks</div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
             {Object.entries(navBreakdown).length === 0 && !loading && <span style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.3)' }}>No data yet</span>}
@@ -329,6 +330,9 @@ export default function AnalyticsDashboard({ onClose }) {
             ))}
           </div>
         </div>
+
+        {/* Section Navigation Flow */}
+        <SectionNavFlow events={events} loading={loading} sectionLabels={SECTION_LABELS} gold={GOLD} />
 
         <div style={{ marginTop: '1.25rem', fontSize: '0.6rem', color: 'rgba(255,255,255,0.18)', textAlign: 'center' }}>
           Ctrl+Alt+J+L to toggle • Last {events.length} events shown
