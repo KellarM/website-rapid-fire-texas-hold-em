@@ -21,6 +21,9 @@ export default function HeroSection() {
         <span key={s.ch} style={{ position: 'absolute', fontSize: '7rem', color: 'rgba(201,168,76,0.07)', lineHeight: 1, zIndex: 1, ...s.pos }}>{s.ch}</span>
       ))}
 
+      {/* spinning roulette wheel accent */}
+      <div className="roulette-wheel spin-slow hidden md:block" style={{ position: 'absolute', top: '13%', right: '6%', width: '128px', height: '128px', zIndex: 3 }} />
+
       {/* oval poker table */}
       <div style={{
         position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',

@@ -11,23 +11,26 @@ import LicensingSection from '../components/LicensingSection';
 import AboutSection from '../components/AboutSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
+import RouletteStrip from '../components/RouletteStrip';
 
 export default function Home() {
   useAnalyticsTracker();
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#0A0A0A' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#0A2419' }}>
       <NavBar />
       <HeroSection />
-      <div className="card-back" style={{ height: '10px', width: '100%' }} />
+      <RouletteStrip />
       <OverviewSection />
       <StadiumSection />
       <CascadeSection />
+      <RouletteStrip />
       <TechnologySection />
       <CompetitiveSection />
+      <RouletteStrip />
       <MarketSection />
       <LicensingSection />
       <AboutSection />
-      <div className="card-back" style={{ height: '10px', width: '100%' }} />
+      <RouletteStrip />
       <ContactSection />
       <Footer />
     </div>

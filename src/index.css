@@ -154,6 +154,30 @@
 .chip-blue { background: radial-gradient(circle at 50% 38%, #3b82f6, #1d4ed8 70%); color: #fff; }
 .chip-gold { background: radial-gradient(circle at 50% 38%, #F5D78E, #C9A84C 62%, #A88638 100%); color: #0A2419; }
 .chip-white { background: radial-gradient(circle at 50% 38%, #ffffff, #e5e0d4 72%); color: #0A2419; }
+
+/* Roulette */
+.text-roulette-red { color: #dc2626; }
+.roulette-wheel {
+  border-radius: 50%;
+  background: conic-gradient(
+    #b91c1c 0 30deg, #161616 30deg 60deg,
+    #b91c1c 60deg 90deg, #161616 90deg 120deg,
+    #b91c1c 120deg 150deg, #161616 150deg 180deg,
+    #b91c1c 180deg 210deg, #161616 210deg 240deg,
+    #b91c1c 240deg 270deg, #161616 270deg 300deg,
+    #b91c1c 300deg 330deg, #161616 330deg 360deg
+  );
+  border: 4px solid #C9A84C;
+  box-shadow: 0 0 0 5px #2a1a0c, 0 0 22px rgba(201,168,76,0.3);
+  position: relative;
+}
+.roulette-wheel::after {
+  content: ''; position: absolute; inset: 30%; border-radius: 50%;
+  background: radial-gradient(circle, #176B4A, #0E3A28);
+  border: 2px solid rgba(201,168,76,0.5);
+}
+@keyframes spin-slow { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 16s linear infinite; }
 .felt-rail {
   background: linear-gradient(135deg, #4a2f18, #2a1a0c 50%, #4a2f18);
   border-radius: 22px;
