@@ -100,6 +100,21 @@
   border: 1px solid rgba(201, 168, 76, 0.22);
   border-radius: 12px;
   box-shadow: inset 0 1px 0 rgba(245, 240, 230, 0.05), 0 6px 24px rgba(0, 0, 0, 0.28);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card-dark::before {
+  content: '♠'; position: absolute; top: 7px; left: 11px;
+  color: rgba(201,168,76,0.16); font-size: 0.85rem; pointer-events: none; z-index: 0;
+}
+.card-dark::after {
+  content: '♣'; position: absolute; bottom: 7px; right: 11px;
+  color: rgba(201,168,76,0.16); font-size: 0.85rem; pointer-events: none; z-index: 0;
+}
+.card-dark:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201,168,76,0.45);
+  box-shadow: inset 0 1px 0 rgba(245,240,230,0.06), 0 12px 32px rgba(0,0,0,0.4), 0 0 22px rgba(201,168,76,0.12);
 }
 
 .felt-table {
@@ -124,12 +139,21 @@
 }
 .poker-chip {
   width: 56px; height: 56px; border-radius: 50%;
-  background: radial-gradient(circle at 50% 38%, #F5D78E 0%, #C9A84C 62%, #A88638 100%);
-  border: 3px dashed rgba(10,36,25,0.5);
-  box-shadow: inset 0 0 0 5px rgba(245,240,230,0.18), 0 2px 6px rgba(0,0,0,0.3);
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Bebas Neue', sans-serif; color: #0A2419; font-size: 0.95rem;
+  font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem;
+  box-shadow: inset 0 0 0 5px rgba(255,255,255,0.16), 0 2px 6px rgba(0,0,0,0.35);
+  position: relative;
 }
+.poker-chip::after {
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
+  border: 3px dashed rgba(0,0,0,0.28); pointer-events: none;
+}
+.chip-red { background: radial-gradient(circle at 50% 38%, #ef4444, #b91c1c 70%); color: #fff; }
+.chip-green { background: radial-gradient(circle at 50% 38%, #22c55e, #15803d 70%); color: #fff; }
+.chip-black { background: radial-gradient(circle at 50% 38%, #3a3a3a, #0a0a0a 72%); color: #C9A84C; }
+.chip-blue { background: radial-gradient(circle at 50% 38%, #3b82f6, #1d4ed8 70%); color: #fff; }
+.chip-gold { background: radial-gradient(circle at 50% 38%, #F5D78E, #C9A84C 62%, #A88638 100%); color: #0A2419; }
+.chip-white { background: radial-gradient(circle at 50% 38%, #ffffff, #e5e0d4 72%); color: #0A2419; }
 .felt-rail {
   background: linear-gradient(135deg, #4a2f18, #2a1a0c 50%, #4a2f18);
   border-radius: 22px;
