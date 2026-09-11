@@ -19,7 +19,7 @@ function Cell({ val, isRf }) {
 export default function CompetitiveSection() {
   const ref = useScrollReveal();
   return (
-    <section id="competitive" style={{ backgroundColor: '#0D1420' }} className="py-24">
+    <section id="competitive" style={{ backgroundColor: '#08200F' }} className="py-24">
       <div className="max-w-7xl mx-auto px-6">
 
         <div ref={ref} className="reveal text-center mb-12">

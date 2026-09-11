@@ -4,14 +4,14 @@ import { base44 } from '@/api/base44Client';
 import { trackEvent } from '@/hooks/useAnalyticsTracker';
 
 const inputStyle = {
-  backgroundColor: '#000000',
+  backgroundColor: '#0F3528',
   border: '1px solid #C9A84C',
   color: '#C9A84C',
   padding: '0.75rem 1rem',
   width: '100%',
   fontSize: '0.9rem',
   outline: 'none',
-  borderRadius: 0,
+  borderRadius: 6,
   fontFamily: 'inherit',
   boxSizing: 'border-box',
 };
@@ -52,7 +52,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" style={{ backgroundColor: '#0A0A0A' }} className="py-24">
+    <section id="contact" style={{ backgroundColor: '#0A2419' }} className="py-24">
       <div className="max-w-5xl mx-auto px-6">
 
         {/* Header */}
@@ -79,7 +79,7 @@ export default function ContactSection() {
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} style={{ backgroundColor: '#000000', border: '1px solid #C9A84C', padding: '2rem' }}>
+          <form onSubmit={handleSubmit} style={{ backgroundColor: '#0F3528', border: '1px solid #C9A84C', padding: '2rem' }}>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem', marginBottom: '1.25rem' }}>
               <div>
@@ -152,14 +152,14 @@ export default function ContactSection() {
               </p>
               <button type="submit" disabled={submitting}
                 style={{
-                  backgroundColor: '#000000', color: '#C9A84C', border: '1px solid #C9A84C',
+                  backgroundColor: '#0F3528', color: '#C9A84C', border: '1px solid #C9A84C',
                   padding: '0.875rem 2.5rem', fontSize: '0.7rem', fontWeight: 700,
                   letterSpacing: '0.2em', textTransform: 'uppercase',
                   cursor: submitting ? 'not-allowed' : 'pointer',
                   opacity: submitting ? 0.6 : 1, transition: 'all 0.3s', whiteSpace: 'nowrap',
                 }}
-                onMouseEnter={e => { if (!submitting) { e.target.style.backgroundColor = '#C9A84C'; e.target.style.color = '#000000'; } }}
-                onMouseLeave={e => { e.target.style.backgroundColor = '#000000'; e.target.style.color = '#C9A84C'; }}>
+                onMouseEnter={e => { if (!submitting) { e.target.style.backgroundColor = '#C9A84C'; e.target.style.color = '#0F3528'; } }}
+                onMouseLeave={e => { e.target.style.backgroundColor = '#0F3528'; e.target.style.color = '#C9A84C'; }}>
                 {submitting ? 'Sending...' : 'Send Inquiry'}
               </button>
             </div>

@@ -199,7 +199,7 @@ export default function AnalyticsDashboard({ onClose }) {
 
   // --- Stat card ---
   const StatCard = ({ icon, label, value, sub }) => (
-    <div style={{ background: '#111', border: '1px solid rgba(201,168,76,0.25)', padding: '0.875rem 1rem', borderRadius: 2 }}>
+    <div style={{ background: '#0F3528', border: '1px solid rgba(201,168,76,0.25)', padding: '0.875rem 1rem', borderRadius: 2 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.4rem', color: GOLD }}>
         {icon}
         <span style={{ fontSize: '0.6rem', letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 600 }}>{label}</span>
@@ -212,7 +212,7 @@ export default function AnalyticsDashboard({ onClose }) {
   return (
     <div style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: '5rem', backgroundColor: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(4px)' }}
       onClick={e => { if (e.target === e.currentTarget) onClose(); }}>
-      <div style={{ backgroundColor: '#0A0A0A', border: '1px solid rgba(201,168,76,0.4)', width: '100%', maxWidth: '740px', maxHeight: '82vh', overflowY: 'auto', borderRadius: 2, padding: '2rem', position: 'relative', margin: '0 1rem' }}>
+      <div style={{ backgroundColor: '#0A2419', border: '1px solid rgba(201,168,76,0.4)', width: '100%', maxWidth: '740px', maxHeight: '82vh', overflowY: 'auto', borderRadius: 2, padding: '2rem', position: 'relative', margin: '0 1rem' }}>
 
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
@@ -250,7 +250,7 @@ export default function AnalyticsDashboard({ onClose }) {
                 cursor: 'pointer', borderRadius: 2, fontWeight: 600, transition: 'all 0.2s',
                 border: `1px solid ${timeframe === tf.value ? GOLD : 'rgba(201,168,76,0.25)'}`,
                 backgroundColor: timeframe === tf.value ? GOLD : 'transparent',
-                color: timeframe === tf.value ? '#000' : 'rgba(201,168,76,0.7)',
+                color: timeframe === tf.value ? '#0F3528' : 'rgba(201,168,76,0.7)',
               }}>
               {tf.label}
             </button>
@@ -272,7 +272,7 @@ export default function AnalyticsDashboard({ onClose }) {
         {/* Device + Referrers row */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginBottom: '1.25rem' }}>
           {/* Device */}
-          <div style={{ background: '#111', border: '1px solid rgba(201,168,76,0.2)', padding: '1rem', borderRadius: 2 }}>
+          <div style={{ background: '#0F3528', border: '1px solid rgba(201,168,76,0.2)', padding: '1rem', borderRadius: 2 }}>
             <div style={{ fontSize: '0.6rem', color: GOLD, letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 600, marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
               <Monitor size={11} /> Device Breakdown
             </div>
@@ -291,7 +291,7 @@ export default function AnalyticsDashboard({ onClose }) {
             })}
           </div>
           {/* Traffic Sources */}
-          <div style={{ background: '#111', border: '1px solid rgba(201,168,76,0.2)', padding: '1rem', borderRadius: 2 }}>
+          <div style={{ background: '#0F3528', border: '1px solid rgba(201,168,76,0.2)', padding: '1rem', borderRadius: 2 }}>
             <div style={{ fontSize: '0.6rem', color: GOLD, letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 600, marginBottom: '0.75rem' }}>Traffic Sources</div>
             {Object.entries(referrers).length === 0 && !loading && <span style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.3)' }}>No data yet</span>}
             {Object.entries(referrers).slice(0, 5).map(([src, count]) => (
@@ -304,7 +304,7 @@ export default function AnalyticsDashboard({ onClose }) {
         </div>
 
         {/* Section Views */}
-        <div style={{ marginBottom: '1.25rem', background: '#111', border: '1px solid rgba(201,168,76,0.2)', padding: '1rem', borderRadius: 2 }}>
+        <div style={{ marginBottom: '1.25rem', background: '#0F3528', border: '1px solid rgba(201,168,76,0.2)', padding: '1rem', borderRadius: 2 }}>
           <div style={{ fontSize: '0.6rem', color: GOLD, letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 600, marginBottom: '0.75rem' }}>Section Views</div>
           {sectionViews.map(s => {
             const max = sectionViews[0]?.count || 1;
@@ -322,12 +322,12 @@ export default function AnalyticsDashboard({ onClose }) {
         </div>
 
         {/* Nav Clicks */}
-        <div style={{ background: '#111', border: '1px solid rgba(201,168,76,0.2)', padding: '1rem', borderRadius: 2, marginBottom: '0.75rem' }}>
+        <div style={{ background: '#0F3528', border: '1px solid rgba(201,168,76,0.2)', padding: '1rem', borderRadius: 2, marginBottom: '0.75rem' }}>
           <div style={{ fontSize: '0.6rem', color: GOLD, letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 600, marginBottom: '0.75rem' }}>Navigation Clicks</div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
             {Object.entries(navBreakdown).length === 0 && !loading && <span style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.3)' }}>No data yet</span>}
             {Object.entries(navBreakdown).map(([label, count]) => (
-              <div key={label} style={{ background: '#0A0A0A', border: '1px solid rgba(201,168,76,0.2)', padding: '0.3rem 0.65rem', borderRadius: 2, fontSize: '0.72rem', color: 'rgba(255,255,255,0.6)', display: 'flex', gap: '0.5rem' }}>
+              <div key={label} style={{ background: '#0A2419', border: '1px solid rgba(201,168,76,0.2)', padding: '0.3rem 0.65rem', borderRadius: 2, fontSize: '0.72rem', color: 'rgba(255,255,255,0.6)', display: 'flex', gap: '0.5rem' }}>
                 <span>{label}</span><span style={{ color: GOLD, fontWeight: 600 }}>{count}</span>
               </div>
             ))}

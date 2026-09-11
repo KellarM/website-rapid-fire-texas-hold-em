@@ -32,7 +32,7 @@ const stats = [
 export default function StadiumSection() {
   const ref = useScrollReveal();
   return (
-    <section id="stadium" style={{ backgroundColor: '#0A0A0A' }} className="py-24">
+    <section id="stadium" style={{ backgroundColor: '#0A2419' }} className="py-24">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header */}

@@ -3,7 +3,7 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 export default function MarketSection() {
   const ref = useScrollReveal();
   return (
-    <section id="market" style={{ backgroundColor: '#0A0A0A' }} className="py-24">
+    <section id="market" style={{ backgroundColor: '#0A2419' }} className="py-24">
       <div className="max-w-7xl mx-auto px-6">
 
         <div ref={ref} className="reveal text-center mb-12">

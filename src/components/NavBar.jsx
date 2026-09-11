@@ -43,7 +43,7 @@ export default function NavBar() {
 
   return (
     <>
-      <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, transition: 'all 0.5s', backgroundColor: scrolled ? 'rgba(10,10,10,0.96)' : 'transparent', backdropFilter: scrolled ? 'blur(12px)' : 'none' }}>
+      <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, transition: 'all 0.5s', backgroundColor: scrolled ? 'rgba(10,36,25,0.92)' : 'transparent', backdropFilter: scrolled ? 'blur(12px)' : 'none' }}>
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo + hidden analytics button */}
           <div className="flex flex-col">
@@ -101,7 +101,7 @@ export default function NavBar() {
             <a
               href="#contact"
               onClick={() => trackEvent('cta_clicked', { location: 'navbar' })}
-              className="px-5 py-2 border border-gold text-gold text-[11px] font-semibold tracking-[0.2em] uppercase hover:bg-gold hover:text-xfh-black transition-all duration-300"
+              className="rounded-md px-5 py-2 border border-gold text-gold text-[11px] font-semibold tracking-[0.2em] uppercase hover:bg-gold hover:text-xfh-black transition-all duration-300"
             >
               Request Demo
             </a>
@@ -122,7 +122,7 @@ export default function NavBar() {
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <div style={{ backgroundColor: '#0A0A0A', borderTop: '1px solid rgba(201,168,76,0.2)' }} className="lg:hidden px-6 py-4 space-y-4">
+          <div style={{ backgroundColor: '#0A2419', borderTop: '1px solid rgba(201,168,76,0.2)' }} className="lg:hidden px-6 py-4 space-y-4">
             {navLinks.map(link => (
               <a
                 key={link.href}
@@ -133,7 +133,7 @@ export default function NavBar() {
                 {link.label}
               </a>
             ))}
-            <a href="#contact" onClick={() => { setMenuOpen(false); trackEvent('cta_clicked', { location: 'mobile_menu' }); }} className="block mt-4 px-5 py-2 border border-gold text-gold text-[11px] font-semibold tracking-[0.2em] uppercase text-center">
+            <a href="#contact" onClick={() => { setMenuOpen(false); trackEvent('cta_clicked', { location: 'mobile_menu' }); }} className="block mt-4 px-5 py-2 border border-gold text-gold text-[11px] font-semibold tracking-[0.2em] uppercase text-center rounded-md">
               Request Demo
             </a>
           </div>

@@ -37,7 +37,7 @@ export default function SectionNavFlow({ events, loading, sectionLabels, gold })
   const maxTransition = topTransitions[0]?.[1] || 1;
 
   return (
-    <div style={{ background: '#111', border: '1px solid rgba(201,168,76,0.2)', padding: '1rem', borderRadius: 2 }}>
+    <div style={{ background: '#0F3528', border: '1px solid rgba(201,168,76,0.2)', padding: '1rem', borderRadius: 2 }}>
       <div style={{ fontSize: '0.6rem', color: gold, letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 600, marginBottom: '0.85rem' }}>
         Section Navigation Flow
       </div>
@@ -55,7 +55,7 @@ export default function SectionNavFlow({ events, loading, sectionLabels, gold })
               { label: 'Scroll Up (back)', value: upMoves, color: '#f97316' },
               { label: 'Total Navigations', value: navEvents.length, color: gold },
             ].map(({ label, value, color }) => (
-              <div key={label} style={{ flex: '1 1 100px', background: '#0A0A0A', border: `1px solid ${color}33`, padding: '0.5rem 0.75rem', borderRadius: 2, textAlign: 'center' }}>
+              <div key={label} style={{ flex: '1 1 100px', background: '#08200F', border: `1px solid ${color}33`, padding: '0.5rem 0.75rem', borderRadius: 2, textAlign: 'center' }}>
                 <div style={{ fontSize: '1.2rem', fontFamily: 'Bebas Neue, sans-serif', color, lineHeight: 1 }}>{loading ? '—' : value}</div>
                 <div style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.4)', marginTop: '0.2rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{label}</div>
               </div>
@@ -92,7 +92,7 @@ export default function SectionNavFlow({ events, loading, sectionLabels, gold })
               <div style={{ fontSize: '0.58rem', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Avg. time before leaving section</div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
                 {avgBySection.map(({ id, label, avg }) => (
-                  <div key={id} style={{ background: '#0A0A0A', border: '1px solid rgba(201,168,76,0.18)', padding: '0.3rem 0.65rem', borderRadius: 2, fontSize: '0.7rem', color: 'rgba(255,255,255,0.55)' }}>
+                  <div key={id} style={{ background: '#08200F', border: '1px solid rgba(201,168,76,0.18)', padding: '0.3rem 0.65rem', borderRadius: 2, fontSize: '0.7rem', color: 'rgba(255,255,255,0.55)' }}>
                     {label}: <span style={{ color: gold, fontWeight: 600 }}>{avg < 60 ? `${avg}s` : `${Math.floor(avg / 60)}m ${avg % 60}s`}</span>
                   </div>
                 ))}

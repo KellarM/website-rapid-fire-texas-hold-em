@@ -6,37 +6,37 @@
 
 @layer base {
   :root {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 98%;
+    --background: 156 56% 9%;
+    --foreground: 43 33% 93%;
+    --card: 152 55% 13%;
+    --card-foreground: 43 33% 93%;
+    --popover: 152 55% 13%;
+    --popover-foreground: 43 33% 93%;
     --primary: 43 55% 55%;
-    --primary-foreground: 0 0% 4%;
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 60%;
+    --primary-foreground: 156 56% 9%;
+    --secondary: 152 45% 18%;
+    --secondary-foreground: 43 33% 93%;
+    --muted: 152 40% 16%;
+    --muted-foreground: 43 20% 72%;
     --accent: 43 55% 55%;
-    --accent-foreground: 0 0% 4%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 43 30% 20%;
-    --input: 0 0% 12%;
+    --accent-foreground: 156 56% 9%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 43 33% 93%;
+    --border: 43 35% 28%;
+    --input: 152 45% 16%;
     --ring: 43 55% 55%;
-    --radius: 0.5rem;
-    --sidebar-background: 0 0% 4%;
-    --sidebar-foreground: 0 0% 80%;
+    --radius: 0.75rem;
+    --sidebar-background: 156 56% 9%;
+    --sidebar-foreground: 43 20% 80%;
     --sidebar-primary: 43 55% 55%;
-    --sidebar-primary-foreground: 0 0% 4%;
-    --sidebar-accent: 0 0% 10%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 43 30% 20%;
+    --sidebar-primary-foreground: 156 56% 9%;
+    --sidebar-accent: 152 45% 18%;
+    --sidebar-accent-foreground: 43 33% 93%;
+    --sidebar-border: 43 35% 28%;
     --sidebar-ring: 43 55% 55%;
     --chart-1: 43 74% 66%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
+    --chart-2: 152 50% 45%;
+    --chart-3: 149 64% 32%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
   }
@@ -48,13 +48,15 @@
   }
 
   html, body, #root {
-    background-color: #0A0A0A;
-    color: #F9F9F9;
+    background-color: #0A2419;
+    color: #F5F0E6;
     font-family: 'Inter', sans-serif;
   }
 
   body {
     @apply bg-background text-foreground;
+    background-image: radial-gradient(rgba(201, 168, 76, 0.025) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 }
 
@@ -71,10 +73,10 @@
 .text-gold-light { color: #F5D78E; }
 .hover\:bg-gold-light:hover { background-color: #F5D78E; }
 
-.bg-xfh-black { background-color: #0A0A0A; }
-.bg-xfh-dark { background-color: #111111; }
-.bg-xfh-navy { background-color: #0D1420; }
-.text-xfh-black { color: #0A0A0A; }
+.bg-xfh-black { background-color: #0A2419; }
+.bg-xfh-dark { background-color: #0F3528; }
+.bg-xfh-navy { background-color: #08200F; }
+.text-xfh-black { color: #0A2419; }
 
 .gold-gradient { background: linear-gradient(135deg, #C9A84C, #F5D78E, #C9A84C); }
 .text-gold-gradient {
@@ -92,15 +94,32 @@
   color: #C9A84C;
 }
 
+/* Felt lounge panels */
 .card-dark {
-  background: #111111;
-  border: 1px solid rgba(201, 168, 76, 0.2);
+  background: linear-gradient(180deg, #103A2C 0%, #0C2C20 100%);
+  border: 1px solid rgba(201, 168, 76, 0.22);
+  border-radius: 12px;
+  box-shadow: inset 0 1px 0 rgba(245, 240, 230, 0.05), 0 6px 24px rgba(0, 0, 0, 0.28);
 }
 
+.felt-table {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, #165C40 0%, #0E3A28 55%, #0A2419 100%);
+}
+
+.suit-bg {
+  background-image:
+    radial-gradient(rgba(201, 168, 76, 0.04) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+.glow-gold { box-shadow: 0 0 48px rgba(201, 168, 76, 0.28); }
+.text-glow-gold { text-shadow: 0 0 38px rgba(201, 168, 76, 0.35); }
+
 /* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #0A0A0A; }
-::-webkit-scrollbar-thumb { background: #C9A84C; border-radius: 3px; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0A2419; }
+::-webkit-scrollbar-thumb { background: #C9A84C; border-radius: 4px; }
 
 /* Animations */
 @keyframes fadeUp {

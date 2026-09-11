@@ -36,7 +36,7 @@ const features = [
 export default function OverviewSection() {
   const ref = useScrollReveal();
   return (
-    <section id="overview" style={{ backgroundColor: '#0A0A0A' }} className="py-24">
+    <section id="overview" style={{ backgroundColor: '#0A2419' }} className="py-24">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header */}
@@ -76,7 +76,7 @@ export default function OverviewSection() {
             <h3 className="text-white text-2xl font-playfair font-bold mt-1">Rapid Fire Texas Hold'em Terminal Interface</h3>
             <p className="text-white/50 text-sm mt-1">10-seat layout with live odds, community cards, and four bet zones — unified on a single display. Scalable to full stadium configuration.</p>
           </div>
-          <div style={{ backgroundColor: '#0A0A0A', display: 'flex', justifyContent: 'center', padding: '1.5rem' }}>
+          <div style={{ backgroundColor: '#0A2419', display: 'flex', justifyContent: 'center', padding: '1.5rem' }}>
             <img
               src="https://media.base44.com/images/public/6a18db090bc2bcd630da3665/787432b72_image.png"
               alt="Game Interface"
