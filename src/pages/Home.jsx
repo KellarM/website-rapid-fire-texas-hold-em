@@ -18,6 +18,7 @@ export default function Home() {
     <div style={{ minHeight: '100vh', backgroundColor: '#0A0A0A' }}>
       <NavBar />
       <HeroSection />
+      <div className="card-back" style={{ height: '10px', width: '100%' }} />
       <OverviewSection />
       <StadiumSection />
       <CascadeSection />
@@ -26,6 +27,7 @@ export default function Home() {
       <MarketSection />
       <LicensingSection />
       <AboutSection />
+      <div className="card-back" style={{ height: '10px', width: '100%' }} />
       <ContactSection />
       <Footer />
     </div>

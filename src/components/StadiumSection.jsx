@@ -38,9 +38,9 @@ export default function StadiumSection() {
         {/* Header */}
         <div ref={ref} className="reveal text-center mb-14">
           <div className="flex items-center justify-center gap-4 mb-4">
-            <div className="h-px w-12 bg-gold/60" />
+            <span style={{ color: 'rgba(201,168,76,0.55)', fontSize: '0.85rem' }}>♠</span>
             <span className="section-label">Stadium Gaming</span>
-            <div className="h-px w-12 bg-gold/60" />
+            <span style={{ color: 'rgba(201,168,76,0.55)', fontSize: '0.85rem' }}>♠</span>
           </div>
           <h2 className="font-playfair text-4xl md:text-5xl text-white font-bold mb-4">
             Rapid Fire on the <span className="text-gold">Stadium Floor</span>

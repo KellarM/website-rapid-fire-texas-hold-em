@@ -55,8 +55,8 @@
 
   body {
     @apply bg-background text-foreground;
-    background-image: radial-gradient(rgba(201, 168, 76, 0.025) 1px, transparent 1px);
-    background-size: 24px 24px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Ctext x='20' y='42' font-size='26' fill='%23C9A84C' opacity='0.05'%3E%E2%99%A0%3C/text%3E%3Ctext x='104' y='92' font-size='26' fill='%23C9A84C' opacity='0.05'%3E%E2%99%A6%3C/text%3E%3Ctext x='52' y='146' font-size='26' fill='%23C9A84C' opacity='0.05'%3E%E2%99%A3%3C/text%3E%3C/svg%3E"), radial-gradient(rgba(201, 168, 76, 0.022) 1px, transparent 1px);
+    background-size: 160px 160px, 24px 24px;
   }
 }
 
@@ -115,6 +115,33 @@
 
 .glow-gold { box-shadow: 0 0 48px rgba(201, 168, 76, 0.28); }
 .text-glow-gold { text-shadow: 0 0 38px rgba(201, 168, 76, 0.35); }
+
+.card-back {
+  background:
+    repeating-linear-gradient(45deg, rgba(201,168,76,0.18) 0 5px, transparent 5px 11px),
+    repeating-linear-gradient(-45deg, rgba(201,168,76,0.18) 0 5px, transparent 5px 11px),
+    linear-gradient(180deg, #0F3528, #0C2A1F);
+}
+.poker-chip {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: radial-gradient(circle at 50% 38%, #F5D78E 0%, #C9A84C 62%, #A88638 100%);
+  border: 3px dashed rgba(10,36,25,0.5);
+  box-shadow: inset 0 0 0 5px rgba(245,240,230,0.18), 0 2px 6px rgba(0,0,0,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif; color: #0A2419; font-size: 0.95rem;
+}
+.felt-rail {
+  background: linear-gradient(135deg, #4a2f18, #2a1a0c 50%, #4a2f18);
+  border-radius: 22px;
+  padding: 14px;
+  box-shadow: 0 0 60px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(201,168,76,0.3);
+}
+.felt-rail-inner {
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, #165C40 0%, #0E3A28 70%, #0A2419 100%);
+  border-radius: 12px;
+  border: 2px solid rgba(201,168,76,0.45);
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.4);
+}
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 8px; }

@@ -58,9 +58,9 @@ export default function ContactSection() {
         {/* Header */}
         <div className="text-center mb-14">
           <div className="flex items-center justify-center gap-4 mb-4">
-            <div style={{ height: '1px', width: '3rem', backgroundColor: 'rgba(201,168,76,0.6)' }} />
+            <span style={{ color: 'rgba(201,168,76,0.55)', fontSize: '0.85rem' }}>♠</span>
             <span style={{ color: '#C9A84C', fontSize: '0.7rem', letterSpacing: '0.25em', textTransform: 'uppercase', fontWeight: 600 }}>Get in Touch</span>
-            <div style={{ height: '1px', width: '3rem', backgroundColor: 'rgba(201,168,76,0.6)' }} />
+            <span style={{ color: 'rgba(201,168,76,0.55)', fontSize: '0.85rem' }}>♠</span>
           </div>
           <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(2rem, 5vw, 3rem)', color: '#ffffff', fontWeight: 700, marginBottom: '1rem' }}>
             Ready to <span style={{ color: '#C9A84C' }}>Discuss?</span>

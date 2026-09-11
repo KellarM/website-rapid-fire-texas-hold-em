@@ -24,9 +24,9 @@ export default function CompetitiveSection() {
 
         <div ref={ref} className="reveal text-center mb-12">
           <div className="flex items-center justify-center gap-4 mb-4">
-            <div className="h-px w-12 bg-gold/60" />
+            <span style={{ color: 'rgba(201,168,76,0.55)', fontSize: '0.85rem' }}>♠</span>
             <span className="section-label">Competitive Landscape</span>
-            <div className="h-px w-12 bg-gold/60" />
+            <span style={{ color: 'rgba(201,168,76,0.55)', fontSize: '0.85rem' }}>♠</span>
           </div>
           <h2 className="font-playfair text-4xl md:text-5xl text-white font-bold mb-4">
             A Different <span className="text-gold">Category</span>
